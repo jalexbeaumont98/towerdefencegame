@@ -73,93 +73,9 @@ public class EnemyBase : MonoBehaviour
         oldPath = path;
 
         maxHealth = health;
-
-        //if (flying) ChangeAgentType(newAgentTypeName);
         if (stealth) SetStealth();
     }
 
-
-
-    protected virtual void ChangeAgentType(string agentTypeName)
-    {
-
-
-        // Get the NavMeshAgent component
-
-        if (agent == null)
-        {
-            Debug.LogError("No NavMeshAgent component found on this GameObject.");
-            return;
-        }
-
-        // Find the desired agent type ID
-        int agentTypeID = GetAgentTypeID(agentTypeName);
-        if (agentTypeID == -1)
-        {
-            Debug.LogError($"Agent type '{agentTypeName}' not found.");
-            return;
-        }
-
-        // Cache current agent properties
-        Vector3 currentPosition = agent.transform.position;
-        Quaternion currentRotation = agent.transform.rotation;
-
-        float speed = agent.speed;
-        float acceleration = agent.acceleration;
-        float angularSpeed = agent.angularSpeed;
-        float stoppingDistance = agent.stoppingDistance;
-
-        // Destroy the current NavMeshAgent
-        Destroy(agent);
-
-        // Wait until the current frame ends before adding the new component
-        StartCoroutine(AddNewNavMeshAgent(agentTypeID, currentPosition, speed, acceleration, angularSpeed, stoppingDistance));
-
-
-    }
-
-    private IEnumerator AddNewNavMeshAgent(int agentTypeID, Vector3 position, float speed, float acceleration, float angularSpeed, float stoppingDistance)
-    {
-        // Wait for the current frame to finish
-        yield return null;
-
-        // Add a new NavMeshAgent
-        NavMeshAgent newAgent = gameObject.AddComponent<NavMeshAgent>();
-        newAgent.agentTypeID = agentTypeID;
-
-        // Reapply cached properties
-        newAgent.speed = speed;
-        newAgent.acceleration = acceleration;
-        newAgent.angularSpeed = angularSpeed;
-        newAgent.stoppingDistance = stoppingDistance;
-
-        // Reposition the agent on the NavMesh
-        if (NavMesh.SamplePosition(position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
-        {
-            newAgent.Warp(hit.position);
-        }
-        else
-        {
-            Debug.LogWarning("Failed to reposition agent on the NavMesh. It might not match the new agent type.");
-        }
-
-        agent = newAgent;
-
-    }
-
-    private int GetAgentTypeID(string agentTypeName)
-    {
-        // Search for the agent type in the NavMesh settings
-        for (int i = 0; i < NavMesh.GetSettingsCount(); i++)
-        {
-            var settings = NavMesh.GetSettingsByIndex(i);
-            if (NavMesh.GetSettingsNameFromID(settings.agentTypeID) == agentTypeName)
-            {
-                return settings.agentTypeID;
-            }
-        }
-        return -1; // Agent type not found
-    }
 
     public virtual int GetHP()
     {
@@ -392,7 +308,7 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-
+ 
     protected virtual void DebugPath()
     {
         oldPath = path;
@@ -412,7 +328,7 @@ public class EnemyBase : MonoBehaviour
 
         AnimateMovement();
 
-        //DebugPath();
+        //DebugPath(); 
 
         // Calculate the angle in degrees
         //float angle = Mathf.Atan2(agent.velocity.y, agent.velocity.x) * Mathf.Rad2Deg + 90f;
