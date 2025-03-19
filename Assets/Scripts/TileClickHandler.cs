@@ -2,6 +2,7 @@ using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -53,7 +54,7 @@ public class TileClickHandler : MonoBehaviour
 
     public static TileClickHandler Instance;
 
-    
+
 
     private void Awake()
     {
@@ -283,6 +284,11 @@ public class TileClickHandler : MonoBehaviour
 
             if (IsOccupiedByTower(cellPosition)) return; //check the wall tilemap to see if the tile is occupied
 
+
+            
+
+            
+
             tilemap_Previews.SetTile(cellPosition, gameState.Towers[selectedTowerToPlace].tile); //set the preview tile
 
 
@@ -298,14 +304,63 @@ public class TileClickHandler : MonoBehaviour
 
 
             }
+            
 
         }
 
         else tilemap_Previews.SetTile(cellPosition, gameState.Towers[selectedTowerToPlace].tile);
 
+    }
+
+    public void FinishPreview()
+    {
+        tilemap_Previews.SetTile(nextPosition, gameState.Towers[selectedTowerToPlace].tile); //set the preview tile
 
 
+        if (gameState.Towers[selectedTowerToPlace].prefab != null) //some towers like walls don't have an additional prefab to spawn
+        {
+            Vector3 worldPosition = tilemap_Previews.CellToWorld(nextPosition); //get the world position from the tile map
 
+            GameObject disabledPrefab = Instantiate(gameState.Towers[selectedTowerToPlace].prefab, worldPosition, Quaternion.identity); //instantiate the prefab
+
+            disabledPrefab.GetComponent<TurretBase>().SetPreviewMode(); //set the preview prefab to preview mode (lowers its opacity and disables itself)
+
+            previousTilePreviewPrefab = disabledPrefab; //so we can delete it later 
+
+
+        }
+
+    }
+
+    public void OnNavMeshUpdatedPreview()
+    {
+        if (!gameState.CheckEnemyPaths()) //if a path doesn't exist
+        {
+
+            Debug.Log("path wasn't valid my guy");
+
+            tilemap_Walls.SetTile(nextPosition, null); //delete the invisible tile
+            Surface2D.UpdateNavMesh(Surface2D.navMeshData); //update the nav mesh with no callback
+        }
+
+        else
+        {
+            FinishPreview();
+        }
+
+    }
+
+
+    private IEnumerator UpdateNavMeshCoroutinePreview()
+    {
+        // Start the NavMesh update and get the AsyncOperation
+        AsyncOperation asyncOperation = Surface2D.UpdateNavMesh(Surface2D.navMeshData);
+
+        // Wait until the NavMesh update is complete
+        yield return new WaitUntil(() => asyncOperation.isDone);
+
+        // Call the function after NavMesh update
+        OnNavMeshUpdatedPreview();
     }
 
     public void DumpPreview() //dumps the preview tile, its associated prefab and resets the previous preview tile position

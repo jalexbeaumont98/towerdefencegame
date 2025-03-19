@@ -166,7 +166,9 @@ public class GameState : MonoBehaviour
         }
 
         return true; //otherwise return true
-    }
+    } //a common reason this might fail is if the path validator enemy isn't in the enemies list!!
+
+    
 
     public void ToggleTime()
     {

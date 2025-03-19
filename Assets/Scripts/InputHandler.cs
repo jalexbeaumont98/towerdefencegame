@@ -95,7 +95,7 @@ public class InputHandler : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            
+
 
             if (inputType == 1)
             {
@@ -103,7 +103,7 @@ public class InputHandler : MonoBehaviour
                 return;
             }
 
-            
+
 
             if (inputType == 0)
             {
@@ -113,12 +113,27 @@ public class InputHandler : MonoBehaviour
 
         }
 
+        if (Input.GetMouseButtonDown(2))
+        {
+            dragOrigin = Input.mousePosition;
+            return;
+        }
+
         if (Input.GetMouseButton(0))
         {
-            
+
             HandleDrag();
 
         }
+
+        if (Input.GetMouseButton(2))
+        {
+
+            HandleDrag();
+
+        }
+
+
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -158,7 +173,7 @@ public class InputHandler : MonoBehaviour
             return; // Ignore drag if interacting with UI
         }
 
-        if (inputType == 0)
+        if (true) //inputType == 0
         {
 
 
