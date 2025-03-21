@@ -218,6 +218,46 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a74f5cc0292aa49d0869240dbe7befc3
+    m_Address: Barrel_AOETurret.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 348baf059aa594d77be3d536554ee1d8
+    m_Address: Barrel_AOETurret_A3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46cd7e48da43148229ee74910b720fd0
+    m_Address: Barrel_AOETurret_B1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f254d5bed91844cdabc8f5416301d8bc
+    m_Address: Barrel_AOETurret_B2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1f52e47ace8844eeaec6f50786ee330
+    m_Address: Barrel_AOETurret_B3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d89e3243cf6948f2b8a6589599e4af6
+    m_Address: TileBases/aoeturret_tile2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 462394874e91b45b2b3c1c98d32e590b
+    m_Address: BulletBases/AOEShotgunSpawnerBase
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8576cff3ad7e498cb858d37a5defb2a
+    m_Address: BulletBases/AOEFlameProjectile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: aefc54713ebeb4547a5e16f316c43303, type: 2}
   m_SchemaSet:

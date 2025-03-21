@@ -111,7 +111,7 @@ MonoBehaviour:
   upgradeBPathCount: 0
   finalTile: 0
   finalTurret: 0
-  fireRate: 4
+  fireRate: 3
   rotationSpeed: 5
   targetingRange: 4
   target: {fileID: 0}

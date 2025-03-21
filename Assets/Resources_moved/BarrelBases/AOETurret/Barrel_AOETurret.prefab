@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 3330902255618538136}
   - component: {fileID: 7643903800183345437}
   m_Layer: 0
-  m_Name: AOETurretBarrel
+  m_Name: Barrel_AOETurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 18
-  m_Sprite: {fileID: 1673890554, guid: 94d16826d6de64cf4bc041a1fcdaf7b2, type: 3}
+  m_Sprite: {fileID: -11062040, guid: 9d59a92716b2b409f8d100ba33003dd8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

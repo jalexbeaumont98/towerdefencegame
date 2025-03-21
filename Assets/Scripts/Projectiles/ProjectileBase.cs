@@ -8,42 +8,53 @@ using UnityEngine.Tilemaps;
 public class ProjectileBase : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected BoxCollider2D col;
+    [SerializeField] protected Camera mainCamera;
     [SerializeField] protected GameObject impact_explosion;
+    [SerializeField] protected LayerMask wallLayer;
+    [SerializeField] protected Animator anim;
 
 
     [Header("Attributes")]
-    [SerializeField] private float bulletSpeed;
-    [SerializeField] private int damage;
-    [SerializeField] private bool autoTargeting;
+    [SerializeField] protected float bulletSpeed;
+    [SerializeField] protected int damage;
+    [SerializeField] protected bool autoTargeting;
 
-    [SerializeField] private bool canHitFlying;
-    [SerializeField] private string upgradeNotes = "";
+    [SerializeField] protected bool canHitFlying;
+    [SerializeField] protected string upgradeNotes = "";
 
     [SerializeField] protected bool destroyAfterDistance = true;
 
-    [SerializeField] protected float maxTravelDistance = 1000f; 
+    [SerializeField] protected float maxTravelDistance = 1000f;
 
     [SerializeField] protected bool destroyOnTower = false;
 
     [SerializeField] protected float destroyOnTowerDistance = 10f;
-    [SerializeField] protected Vector3 spawnPosition;
-    
 
-    private Transform target;
-    private bool velocitySet;
-    private Vector2 direction;
-    
+    [SerializeField] protected Vector3 spawnPosition;
+    [SerializeField] protected bool destroyAfterAnimation = false;
+
+
+    protected Transform target;
+    protected bool velocitySet;
+    protected Vector2 direction;
+
     protected float distanceTravelled = 0f;
+
+
 
 
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<BoxCollider2D>();
+        anim = GetComponentInChildren<Animator>();
         mainCamera = Camera.main;
 
         spawnPosition = transform.position;
+
+        if (destroyAfterAnimation) StartCoroutine(DestroyAfterAnimation());
 
     }
 
@@ -70,7 +81,7 @@ public class ProjectileBase : MonoBehaviour
 
         return stats;
 
-        
+
     }
 
     public virtual string GetUpgradeNotes()
@@ -92,18 +103,49 @@ public class ProjectileBase : MonoBehaviour
     {
         CheckInsideBounds();
 
-        distanceTravelled = Vector3.Distance(spawnPosition, transform.position);
-
-        if (distanceTravelled >= maxTravelDistance * GameState.Instance.tileSize)
-        {
-            Destroy(gameObject);
-        }
+        
 
     }
 
 
     protected virtual void FixedUpdate()
     {
+
+        distanceTravelled = Vector3.Distance(spawnPosition, transform.position);
+
+        if (distanceTravelled >= maxTravelDistance * GameState.Instance.tileSize)
+        {
+            DestroyProjectile();
+        }
+
+
+        if (destroyOnTower && false) //WIP
+        {
+            
+            Vector2 bulletCenter = (Vector2)transform.position;
+            Vector2 bulletSize = col.size;  // Get the size of the BoxCollider2D
+
+            // Perform a BoxCast in the bullet's movement direction
+            RaycastHit2D hit = Physics2D.BoxCast(
+                bulletCenter, bulletSize, 0f, direction, distanceTravelled, wallLayer
+            );
+
+            if (hit.collider != null)
+            {
+                if (distanceTravelled >= destroyOnTowerDistance * GameState.Instance.tileSize)
+                {
+                    
+
+                    DestroyProjectile();
+                    return;
+                }
+
+                
+            }
+
+
+        }
+
         if (autoTargeting)
         {
             if (!target) return;
@@ -120,6 +162,8 @@ public class ProjectileBase : MonoBehaviour
             velocitySet = true;
         }
 
+
+
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -135,15 +179,36 @@ public class ProjectileBase : MonoBehaviour
             if (impact_explosion)
             {
                 Vector3 position = transform.position;
-                Instantiate(impact_explosion, position, quaternion.identity); 
+                Instantiate(impact_explosion, position, quaternion.identity);
             }
 
             enemy.TakeDamage(damage);
-            Destroy(gameObject);
+            HandlePostCollisionEnemy();
         }
+        /*
 
-        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
+        {
+            //Debug.Log("Bullet hit a wall!");
 
+            if (destroyOnTower)
+            {
+                
+
+                if (distanceTravelled >= destroyOnTowerDistance * GameState.Instance.tileSize)
+                {
+                    DestroyProjectile();
+                }
+            }
+
+        }
+        */
+
+    }
+
+    protected virtual void HandlePostCollisionEnemy()
+    {
+        DestroyProjectile();
     }
 
     protected virtual void CheckInsideBounds()
@@ -153,5 +218,18 @@ public class ProjectileBase : MonoBehaviour
         bool isVisible = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
 
         if (!isVisible) Destroy(gameObject);
+    }
+
+    IEnumerator DestroyAfterAnimation()
+    {
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        DestroyProjectile();
+    }
+
+    protected virtual void DestroyProjectile()
+    {
+
+
+        Destroy(gameObject);
     }
 }

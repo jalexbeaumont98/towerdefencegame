@@ -129,7 +129,7 @@ public class InputHandler : MonoBehaviour
         if (Input.GetMouseButton(2))
         {
 
-            HandleDrag();
+            HandleDrag(true);
 
         }
 
@@ -166,14 +166,14 @@ public class InputHandler : MonoBehaviour
 
     }
 
-    public void HandleDrag()
+    public void HandleDrag(bool ovrride = false)
     {
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         {
             return; // Ignore drag if interacting with UI
         }
 
-        if (true) //inputType == 0
+        if (inputType == 0 || ovrride) 
         {
 
 

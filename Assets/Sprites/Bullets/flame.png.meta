@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 94d16826d6de64cf4bc041a1fcdaf7b2
+guid: cb3a2b8d162e94e6884e5a1d3c414a49
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: aoeturret_turrets_0
+      name: flame_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 11
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f18dea6f338441f3a0d718028a5d20c
-      internalID: 1673890554
+      spriteID: 3a2d76861bb534c7fbc5627c94987118
+      internalID: -468348284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_1
+      name: flame_1
       rect:
         serializedVersion: 2
-        x: 8
+        x: 11
         y: 0
-        width: 8
-        height: 8
+        width: 11
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e97d1a3abc0e14883b19faf35c7c2350
-      internalID: -1194327977
+      spriteID: 1e37f194016db49c583a696322d04c55
+      internalID: -1540335090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_2
+      name: flame_2
       rect:
         serializedVersion: 2
-        x: 16
+        x: 22
         y: 0
-        width: 8
-        height: 8
+        width: 11
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c2c6c0c685414513a60a1671e89adea
-      internalID: 1148170437
+      spriteID: d0e062719427f403383166c12cd47e0b
+      internalID: 284705093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_3
+      name: flame_3
       rect:
         serializedVersion: 2
-        x: 24
+        x: 33
         y: 0
-        width: 8
-        height: 8
+        width: 11
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c52791e5186f348bb838952b8c5b1c3f
-      internalID: -824464494
+      spriteID: 20b98936022f34191abfbb9c0da867df
+      internalID: 788930663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_4
+      name: flame_4
       rect:
         serializedVersion: 2
-        x: 32
+        x: 44
         y: 0
-        width: 8
-        height: 8
+        width: 11
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76ffee6622a3a484480f1b05b5927844
-      internalID: -1084963562
+      spriteID: 887b1d8d529de40a280cd58827abe1b1
+      internalID: -248948579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_5
+      name: flame_5
       rect:
         serializedVersion: 2
-        x: 40
+        x: 55
         y: 0
-        width: 8
-        height: 8
+        width: 11
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dab2489709d1c4d5aadcfcac7f668d34
-      internalID: 317782292
+      spriteID: 13d37d7d1eacd4f698d26d11c85ab0f6
+      internalID: 1541323437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_6
+      name: flame_6
       rect:
         serializedVersion: 2
-        x: 48
+        x: 66
         y: 0
-        width: 8
-        height: 8
+        width: 11
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,8 +263,176 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30949b3881e7c4d5f97a6b3f3fb1e7d3
-      internalID: 546538831
+      spriteID: dce1e88eae70743818e3c1062c50785c
+      internalID: -928821972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flame_7
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f45b494b017de4167add0e310344c044
+      internalID: 578486816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flame_8
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f8c492733d104b5785d58c19c60f3a7
+      internalID: -719993972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flame_9
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff097a9e9126e4cfdbe6f3040a350d3b
+      internalID: -679819405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flame_10
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90503c6c9aede4b838de44853113e79d
+      internalID: 68218608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flame_11
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d736b374b87747debc4a38ad15ac66b
+      internalID: -310633089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flame_12
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38e0180b485a741e586dfd8686fcf400
+      internalID: 206535474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flame_13
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cfc01ae8d8114d8ab5e7414c730ad7c
+      internalID: 291440358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flame_14
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85ed576699741488d8b97dad76ba9018
+      internalID: 886898055
       vertices: []
       indices: 
       edges: []
@@ -280,13 +448,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      aoeturret_turrets_0: 1673890554
-      aoeturret_turrets_1: -1194327977
-      aoeturret_turrets_2: 1148170437
-      aoeturret_turrets_3: -824464494
-      aoeturret_turrets_4: -1084963562
-      aoeturret_turrets_5: 317782292
-      aoeturret_turrets_6: 546538831
+      flame_0: -468348284
+      flame_1: -1540335090
+      flame_10: 68218608
+      flame_11: -310633089
+      flame_12: 206535474
+      flame_13: 291440358
+      flame_14: 886898055
+      flame_2: 284705093
+      flame_3: 788930663
+      flame_4: -248948579
+      flame_5: 1541323437
+      flame_6: -928821972
+      flame_7: 578486816
+      flame_8: -719993972
+      flame_9: -679819405
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
