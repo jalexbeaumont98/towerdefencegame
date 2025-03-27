@@ -363,74 +363,85 @@ public class TurretUpgradeMenu : MonoBehaviour
 
             mode = 1;
 
-            if (turretObject.activeSelf) turretObject.SetActive(false);
-
-            if (!bulletObject.activeSelf) bulletObject.SetActive(true);
-
-            int pathProgress; // Tracks the current progress in the selected upgrade path.
-
-            print(MaxValue(upgradePath, 2));
-
-            // Get the upgrade data for the selected path based on the current progress.
-            if (upgradePath == 0)
-                upgradeData = turret.towerData.upgradesA[MaxValue(turret.GetTurretUpgradeInfo()[upgradePath], 2)];
-            else
-                upgradeData = turret.towerData.upgradesB[MaxValue(turret.GetTurretUpgradeInfo()[upgradePath], 2)];
-
-            pathProgress = turret.GetTurretUpgradeInfo()[upgradePath]; // Update the path progress.
-
-
-            try
-            {
-                // Set the bullet image to the new bullet's sprite if a new bullet is unlocked.
-                if (upgradeData.isNewBullet)
-                {
-                    if (upgradeData.newBullet.gameObject.GetComponentInChildren<SpriteRenderer>().sprite != null)
-                        bulletImage.sprite = upgradeData.newBullet.gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
-                }
-                else
-                {
-                    // Otherwise, use the turret's default bullet sprite.
-                    bulletImage.sprite = turret.bullet.GetComponentInChildren<SpriteRenderer>().sprite;
-                }
-
-            }
-            catch (Exception e)
-            {
-                // Log any exceptions that occur during the setup process.
-                print(e);
-            }
-
-
-
-
-            // Destroy all old stat line text objects
-            foreach (Transform child in statBlock.transform)
-            {
-                Destroy(child.gameObject); // Destroy the child GameObject
-            }
-
-            // Determine the upgrade path string ("A" or "B") for display purposes.
-            string upgradePathString;
-            if (upgradePath == 0)
-                upgradePathString = "A";
-            else
-                upgradePathString = "B";
-
-            if (turret.HasReachedMaximumUpgradesAtPath(upgradePath) || turret.GetTurretUpgradeInfo()[upgradePath] >= 3)
-            {
-
-                GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
-                newStatText.GetComponent<TextMeshProUGUI>().text = "This path has reached the max amount of upgrades.";
-
-                // Disable the upgrade menu for this path if upgrades are no longer possible.
-                SetUpgradeMenuDisabled(upgradePathString);
-                return;
-            }
-
-            SetUpgradeTextBullet();
+            SetUpgradeMenuBullet();
 
         }
+    }
+
+    public void SetUpgradeMenuBullet()
+    {
+
+        if (turretObject.activeSelf) turretObject.SetActive(false);
+
+        if (!bulletObject.activeSelf) bulletObject.SetActive(true);
+
+        int pathProgress; // Tracks the current progress in the selected upgrade path.
+
+        print(MaxValue(upgradePath, 2));
+
+        // Get the upgrade data for the selected path based on the current progress.
+        if (upgradePath == 0)
+            upgradeData = turret.towerData.upgradesA[MaxValue(turret.GetTurretUpgradeInfo()[upgradePath], 2)];
+        else
+            upgradeData = turret.towerData.upgradesB[MaxValue(turret.GetTurretUpgradeInfo()[upgradePath], 2)];
+
+        pathProgress = turret.GetTurretUpgradeInfo()[upgradePath]; // Update the path progress.
+
+
+        try
+        {
+            // Set the bullet image to the new bullet's sprite if a new bullet is unlocked.
+            if (upgradeData.isNewBullet)
+            {
+                if (upgradeData.newBullet.gameObject.GetComponent<ProjectileBase>().icon != null)
+                {
+                    bulletImage.sprite = upgradeData.newBullet.gameObject.GetComponent<ProjectileBase>().icon;
+                }
+
+                else if (upgradeData.newBullet.gameObject.GetComponentInChildren<SpriteRenderer>().sprite != null)
+                    bulletImage.sprite = upgradeData.newBullet.gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
+            }
+            else
+            {
+                // Otherwise, use the turret's default bullet sprite.
+                bulletImage.sprite = turret.bullet.GetComponentInChildren<SpriteRenderer>().sprite;
+            }
+
+        }
+        catch (Exception e)
+        {
+            // Log any exceptions that occur during the setup process.
+            print(e);
+        }
+
+
+
+
+        // Destroy all old stat line text objects
+        foreach (Transform child in statBlock.transform)
+        {
+            Destroy(child.gameObject); // Destroy the child GameObject
+        }
+
+        // Determine the upgrade path string ("A" or "B") for display purposes.
+        string upgradePathString;
+        if (upgradePath == 0)
+            upgradePathString = "A";
+        else
+            upgradePathString = "B";
+
+        if (turret.HasReachedMaximumUpgradesAtPath(upgradePath) || turret.GetTurretUpgradeInfo()[upgradePath] >= 3)
+        {
+
+            GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
+            newStatText.GetComponent<TextMeshProUGUI>().text = "This path has reached the max amount of upgrades.";
+
+            // Disable the upgrade menu for this path if upgrades are no longer possible.
+            SetUpgradeMenuDisabled(upgradePathString);
+            return;
+        }
+
+        SetUpgradeTextBullet();
     }
 
 
