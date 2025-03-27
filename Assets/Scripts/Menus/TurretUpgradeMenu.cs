@@ -87,6 +87,9 @@ public class TurretUpgradeMenu : MonoBehaviour
             SetUpgradeMenuDisabled(upgradePathString);
             pathProgress = GameState.maxUpgrade;
             //return;
+
+
+
         }
         else
         {
@@ -103,6 +106,8 @@ public class TurretUpgradeMenu : MonoBehaviour
             upgradeButtonText.text = "Upgrade " + upgradePathString + (pathProgress + 1) + " $" + upgradeData.price;
 
             SetUpgradeTextTurret();
+
+
         }
 
 
@@ -153,17 +158,21 @@ public class TurretUpgradeMenu : MonoBehaviour
 
 
 
-
-        // Display the cost of the next upgrade.
-
-
-
-
     }
 
     private void SetUpgradeTextTurret()
     {
+
         string statSign = "";
+        bool changed = false;
+
+        if (upgradeData.description != "")
+        {
+            GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
+
+            newStatText.GetComponent<TextMeshProUGUI>().text = upgradeData.description;
+            changed = true;
+        }
 
         if (upgradeData.fireRate != 0)
         {
@@ -173,7 +182,7 @@ public class TurretUpgradeMenu : MonoBehaviour
             GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
 
             newStatText.GetComponent<TextMeshProUGUI>().text = "Firerate: " + statSign + upgradeData.fireRate.ToString();
-
+            changed = true;
 
         }
 
@@ -186,7 +195,7 @@ public class TurretUpgradeMenu : MonoBehaviour
             GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
 
             newStatText.GetComponent<TextMeshProUGUI>().text = "Rotation Speed: " + statSign + upgradeData.rotationSpeed.ToString();
-
+            changed = true;
         }
 
         if (upgradeData.targetingRange != 0)
@@ -198,7 +207,7 @@ public class TurretUpgradeMenu : MonoBehaviour
             GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
 
             newStatText.GetComponent<TextMeshProUGUI>().text = "Targeting Range: " + statSign + upgradeData.targetingRange.ToString();
-
+            changed = true;
         }
 
         if (upgradeData.canTargetStealth && !turret.GetStealth())
@@ -207,7 +216,7 @@ public class TurretUpgradeMenu : MonoBehaviour
             GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
 
             newStatText.GetComponent<TextMeshProUGUI>().text = "Can target Stealth enemies.";
-
+            changed = true;
         }
 
         if (upgradeData.canTargetFlying && !turret.GetFlying())
@@ -216,20 +225,104 @@ public class TurretUpgradeMenu : MonoBehaviour
             GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
 
             newStatText.GetComponent<TextMeshProUGUI>().text = "Can target Flying enemies.";
-
+            changed = true;
         }
 
         // Store the cost of the current upgrade for later use.
         cost = upgradeData.price;
 
-        if (statBlock.transform.childCount == 0)
+        if (!changed)
         {
             Instantiate(statTextPrefab, statBlock.transform).GetComponent<TextMeshProUGUI>().text = "No changes to towers stats."; ;
             Instantiate(statTextPrefab, statBlock.transform).GetComponent<TextMeshProUGUI>().text = "See projectile stats."; ;
 
+
         }
 
-        SetTextContentSize();
+        else
+        {
+            print("count ! : " + content.transform.childCount);
+            foreach (Transform child in content.transform) print(child.name);
+        }
+
+
+
+
+    }
+
+    private void SetUpgradeTextBullet()
+    {
+        if (!upgradeData.isNewBullet)
+        {
+            GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
+
+            newStatText.GetComponent<TextMeshProUGUI>().text = "No changes to towers projectile.";
+
+
+        }
+
+        else
+        {
+
+            string statSign = "";
+
+
+            float[] oldStats = turret.bullet.GetComponent<ProjectileBase>().GetStats();
+
+            float[] newStats = upgradeData.newBullet.GetComponent<ProjectileBase>().GetStats();
+
+            string upgradeNotes = upgradeData.newBullet.GetComponent<ProjectileBase>().GetUpgradeNotes();
+
+            if (upgradeNotes != "")
+            {
+                GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
+                newStatText.GetComponent<TextMeshProUGUI>().text = upgradeNotes;
+            }
+
+            if (newStats[0] != oldStats[0])
+            {
+                statSign = "";
+                if (newStats[0] > 0) statSign = "+";
+
+                GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
+
+                newStatText.GetComponent<TextMeshProUGUI>().text = "Damage: " + statSign + newStats[0];
+
+            }
+
+            if (newStats[1] != oldStats[1])
+            {
+                statSign = "";
+                if (newStats[1] > 0) statSign = "+";
+
+                GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
+
+                newStatText.GetComponent<TextMeshProUGUI>().text = "Speed: " + statSign + newStats[1];
+
+
+            }
+
+            if (newStats[2] != oldStats[2])
+            {
+                GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
+
+                if (newStats[2] == 0)
+                {
+                    newStatText.GetComponent<TextMeshProUGUI>().text = "Projectile no longer auto tracks.";
+                }
+
+                else if (newStats[2] == 1)
+                {
+                    if (newStats[2] == 0)
+                    {
+                        newStatText.GetComponent<TextMeshProUGUI>().text = "Projectile will now auto track.";
+                    }
+                }
+
+            }
+
+
+        }
     }
 
     // Attempts to upgrade the turret when the player clicks the upgrade button.
@@ -335,93 +428,12 @@ public class TurretUpgradeMenu : MonoBehaviour
                 return;
             }
 
-            if (!upgradeData.isNewBullet)
-            {
-                GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
-
-                newStatText.GetComponent<TextMeshProUGUI>().text = "No changes to towers projectile.";
-
-            }
-
-            else
-            {
-
-                string statSign = "";
-
-
-                float[] oldStats = turret.bullet.GetComponent<ProjectileBase>().GetStats();
-
-                float[] newStats = upgradeData.newBullet.GetComponent<ProjectileBase>().GetStats();
-
-                string upgradeNotes = upgradeData.newBullet.GetComponent<ProjectileBase>().GetUpgradeNotes();
-
-                if (upgradeNotes != "")
-                {
-                    GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
-                    newStatText.GetComponent<TextMeshProUGUI>().text = upgradeNotes;
-                }
-
-                if (newStats[0] != oldStats[0])
-                {
-                    statSign = "";
-                    if (newStats[0] > 0) statSign = "+";
-
-                    GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
-
-                    newStatText.GetComponent<TextMeshProUGUI>().text = "Damage: " + statSign + newStats[0];
-
-                }
-
-                if (newStats[1] != oldStats[1])
-                {
-                    statSign = "";
-                    if (newStats[1] > 0) statSign = "+";
-
-                    GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
-
-                    newStatText.GetComponent<TextMeshProUGUI>().text = "Speed: " + statSign + newStats[1];
-
-
-                }
-
-                if (newStats[2] != oldStats[2])
-                {
-                    GameObject newStatText = Instantiate(statTextPrefab, statBlock.transform);
-
-                    if (newStats[2] == 0)
-                    {
-                        newStatText.GetComponent<TextMeshProUGUI>().text = "Projectile no longer auto tracks.";
-                    }
-
-                    else if (newStats[2] == 1)
-                    {
-                        if (newStats[2] == 0)
-                        {
-                            newStatText.GetComponent<TextMeshProUGUI>().text = "Projectile will now auto track.";
-                        }
-                    }
-
-                }
-
-            }
-
-
-
-            SetTextContentSize();
-
-
-
+            SetUpgradeTextBullet();
 
         }
     }
 
-    private void SetTextContentSize()
-    {
-        Vector2 sizeDelta = content.sizeDelta; // Get the current sizeDelta
-        float newHeight = statBlock.transform.childCount * content.GetComponent<GridLayoutGroup>().cellSize.y;
-        sizeDelta.y = newHeight; // Modify the height
-        content.sizeDelta = sizeDelta; // Apply the new sizeDelta
-    }
+
 
     private int MaxValue(int value, int max)
     {

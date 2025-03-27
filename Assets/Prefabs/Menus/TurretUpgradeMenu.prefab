@@ -949,7 +949,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6784454882778115527}
-  - component: {fileID: 8196263914137074802}
+  - component: {fileID: 4342623774388617318}
+  - component: {fileID: 8050948750746983451}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -974,9 +975,9 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 300}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &8196263914137074802
+--- !u!114 &4342623774388617318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -985,21 +986,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 6253674091682821625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 5
-    m_Right: 5
-    m_Top: 5
-    m_Bottom: 5
-  m_ChildAlignment: 1
-  m_StartCorner: 0
-  m_StartAxis: 1
-  m_CellSize: {x: 175, y: 30}
-  m_Spacing: {x: 0, y: 5}
-  m_Constraint: 1
-  m_ConstraintCount: 1
+    m_Left: 0
+    m_Right: 0
+    m_Top: 10
+    m_Bottom: 10
+  m_ChildAlignment: 0
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &8050948750746983451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253674091682821625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &7021608197402983332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,6 +1376,8 @@ MonoBehaviour:
     newSprite: {fileID: 0}
     newTile: {fileID: 0}
     newBullet: {fileID: 0}
+    description: 
+    bulletDescription: 
   turret: {fileID: 0}
   statBlock: {fileID: 6253674091682821625}
   statTextPrefab: {fileID: 1771613458349331827, guid: bce34536a08309c4a915613561b04a69, type: 3}

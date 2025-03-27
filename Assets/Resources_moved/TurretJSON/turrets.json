@@ -45,7 +45,7 @@
                     "newSprite": "",
                     "newTile": "machinegun_turret_tile_PathA1",
                     "newBullet": "",
-                    "description": "",
+                    "description": "This upgrade path focuses on firerate and rotation speed.",
                     "bulletDescription": ""
                 },
                 {
@@ -79,7 +79,7 @@
                     "newSprite": "Barrel_MachineGun_A2.prefab",
                     "newTile": "machinegun_turret_tile_PathA2",
                     "newBullet": "",
-                    "description": "",
+                    "description": "The final upgrade for this path.",
                     "bulletDescription": ""
                 }
             ],
@@ -98,7 +98,7 @@
                     "newSprite": "Barrel_MachineGun_B0.prefab",
                     "newTile": "",
                     "newBullet": "MachineGunBulletPathB1",
-                    "description": "",
+                    "description": "This upgrade path focuses on improving the towers bullet and range.",
                     "bulletDescription": ""
                 },
                 {
