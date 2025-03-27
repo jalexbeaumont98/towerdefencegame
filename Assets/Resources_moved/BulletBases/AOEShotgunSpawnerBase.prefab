@@ -159,18 +159,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  col: {fileID: 0}
   mainCamera: {fileID: 0}
   impact_explosion: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  anim: {fileID: 0}
+  icon: {fileID: 21300000, guid: 77230c27d6bcc414a806880e61ec9bbb, type: 3}
   bulletSpeed: 20
   damage: 1
   autoTargeting: 0
   canHitFlying: 0
-  upgradeNotes: 
+  upgradeNotes: Shotgun!
   destroyAfterDistance: 1
   maxTravelDistance: 1000
   destroyOnTower: 0
   destroyOnTowerDistance: 10
   spawnPosition: {x: 0, y: 0, z: 0}
+  destroyAfterAnimation: 0
   numBullets: 5
   angleVariation: 15
   bulletPrefab: {fileID: 7470141289613530864, guid: 5eab411ca10ef4f918485057c2bccbc9, type: 3}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] protected GameObject impact_explosion;
     [SerializeField] protected LayerMask wallLayer;
     [SerializeField] protected Animator anim;
+    [SerializeField] public Sprite icon;
 
 
     [Header("Attributes")]

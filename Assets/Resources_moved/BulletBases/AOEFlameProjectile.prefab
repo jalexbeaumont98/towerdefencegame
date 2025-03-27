@@ -86,7 +86,7 @@ MonoBehaviour:
   damage: 5
   autoTargeting: 0
   canHitFlying: 0
-  upgradeNotes: 
+  upgradeNotes: Firepower!
   destroyAfterDistance: 0
   maxTravelDistance: 5
   destroyOnTower: 0
