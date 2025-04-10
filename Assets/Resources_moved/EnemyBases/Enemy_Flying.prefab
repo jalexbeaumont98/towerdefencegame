@@ -253,6 +253,12 @@ MonoBehaviour:
   backSprite: {fileID: 21300000, guid: 26a075b9b27dbbb4c93cb604ec43af0c, type: 3}
   leftSprite: {fileID: 21300000, guid: 26a075b9b27dbbb4c93cb604ec43af0c, type: 3}
   rightSprite: {fileID: 21300000, guid: 26a075b9b27dbbb4c93cb604ec43af0c, type: 3}
+  statuses: []
+  startStatuses:
+  - {fileID: 4089276186973708205, guid: bdda92156eaa540a8aa9bb540353c6c5, type: 3}
+  statusBar: {fileID: 0}
+  statusBarScript: {fileID: 0}
+  healthBar: {fileID: 0}
   enemyName: 
   health: 8
   maxHealth: 0
@@ -261,16 +267,14 @@ MonoBehaviour:
   shield: 0
   reward: 10
   damage: 1
-  pathMode: 0
   stealth: 0
   flying: 1
-  minimumDistance: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  minAnimTime: 0.2
   description: A basic flying enemy. It ignores all walls making a beeline for the
     goal. Only certain towers can target flying enemies.
+  uiOffsetVector: {x: 0, y: 0.8, z: 0}
 --- !u!50 &2576332284764733170
 Rigidbody2D:
   serializedVersion: 4
@@ -370,7 +374,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 25
+  m_SortingOrder: 26
   m_Sprite: {fileID: 21300000, guid: 26a075b9b27dbbb4c93cb604ec43af0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

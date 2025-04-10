@@ -252,6 +252,10 @@ MonoBehaviour:
   backSprite: {fileID: 531819232, guid: 69fa831d62d78d840a2d60862afded6e, type: 3}
   leftSprite: {fileID: -578100739, guid: 69fa831d62d78d840a2d60862afded6e, type: 3}
   rightSprite: {fileID: -671476947, guid: 69fa831d62d78d840a2d60862afded6e, type: 3}
+  statuses: []
+  statusBar: {fileID: 0}
+  statusBarScript: {fileID: 0}
+  healthBar: {fileID: 0}
   enemyName: 
   health: 5
   maxHealth: 0
@@ -269,6 +273,7 @@ MonoBehaviour:
     m_Bits: 256
   minAnimTime: 0.2
   description: A faster enemy that will attempt to speed past your defenses.
+  uiOffsetVector: {x: 0, y: 0.8, z: 0}
 --- !u!50 &38000778018972916
 Rigidbody2D:
   serializedVersion: 4

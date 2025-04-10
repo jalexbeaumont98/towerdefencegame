@@ -10,10 +10,11 @@ public class GameState : MonoBehaviour
     [Header("References")]
     [SerializeField] private List<EnemyBase> enemies;
     [SerializeField] private List<TowerPlaceData> towers;
-    [SerializeField] public GameObject towerHighlightPrefab, rangeCirclePrefab;
+    [SerializeField] public GameObject towerHighlightPrefab, rangeCirclePrefab, enemyStatusBarPrefab;
 
     [SerializeField] public GameObject MainMenuPrefab;
     [SerializeField] public GameObject LoadingBarPrefab;
+    [SerializeField] public List<EnemyStatus> statuses;
 
 
     public IReadOnlyList<TowerPlaceData> Towers => towers;
@@ -52,6 +53,7 @@ public class GameState : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
     }
 
     private void Start()
@@ -259,6 +261,17 @@ public class GameState : MonoBehaviour
     public void FreeTowerListMemory()
     {
         towers.Clear();
+    }
+
+    public EnemyStatus GetStatus(string type)
+    {
+        foreach(EnemyStatus status in statuses)
+        {
+            if (status.type == type)
+                return status;
+        }
+
+        return null;
     }
 
 

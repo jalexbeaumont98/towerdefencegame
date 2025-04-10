@@ -75,8 +75,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  col: {fileID: 0}
   mainCamera: {fileID: 0}
   impact_explosion: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  anim: {fileID: 0}
+  icon: {fileID: 0}
+  statuses:
+  - {fileID: 8062478675027841280, guid: 62e212af3d1c64eb4ba2c4a8d4bf7e3a, type: 3}
   bulletSpeed: 20
   damage: 1
   autoTargeting: 0
@@ -84,7 +92,10 @@ MonoBehaviour:
   upgradeNotes: 
   destroyAfterDistance: 1
   maxTravelDistance: 12
+  destroyOnTower: 0
+  destroyOnTowerDistance: 10
   spawnPosition: {x: 0, y: 0, z: 0}
+  destroyAfterAnimation: 0
 --- !u!61 &8173701439209539685
 BoxCollider2D:
   m_ObjectHideFlags: 0

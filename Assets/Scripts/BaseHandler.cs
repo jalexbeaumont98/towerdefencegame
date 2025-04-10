@@ -32,7 +32,7 @@ public class BaseHandler : MonoBehaviour
 
             if (enemy == null) return;
 
-            gameState.SetHealth(enemy.GetDamage());
+            gameState.SetHealth(enemy.Damage);
             enemy.Die(true);
 
             OnBaseHit?.Invoke();

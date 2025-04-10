@@ -155,12 +155,12 @@ public class TurretBase : MonoBehaviour
 
         try
         {
-            if (targetedEnemy.GetComponent<EnemyBase>().GetStealth())
+            if (targetedEnemy.GetComponent<EnemyBase>().Stealth)
             {
                 if (!canTargetStealth) return false;
             }
 
-            if (targetedEnemy.GetComponent<EnemyBase>().GetFlying())
+            if (targetedEnemy.GetComponent<EnemyBase>().Flying)
             {
                 if (!canTargetFlying) return false;
             }
@@ -187,7 +187,7 @@ public class TurretBase : MonoBehaviour
         {
             try
             {
-                if (hit.transform.GetComponent<EnemyBase>().GetStealth()) tempHits.Add(hit);
+                if (hit.transform.GetComponent<EnemyBase>().Stealth) tempHits.Add(hit);
 
             }
 
@@ -220,7 +220,7 @@ public class TurretBase : MonoBehaviour
         {
             try
             {
-                if (hit.transform.GetComponent<EnemyBase>().GetFlying()) tempHits.Add(hit);
+                if (hit.transform.GetComponent<EnemyBase>().Flying) tempHits.Add(hit);
 
             }
 
@@ -440,13 +440,13 @@ public class TurretBase : MonoBehaviour
         //print("GetStrongest");
 
         Transform strongest = hits[0].transform;
-        float mostHP = hits[0].transform.GetComponent<EnemyBase>().GetHP();
+        float mostHP = hits[0].transform.GetComponent<EnemyBase>().Health;
 
         foreach (RaycastHit2D hit in hits)
         {
             try
             {
-                if (hit.transform.GetComponent<EnemyBase>().GetHP() > mostHP)
+                if (hit.transform.GetComponent<EnemyBase>().Health > mostHP)
                 {
                     if (EnsureTargetCanBeTargeted(hit.transform)) strongest = hit.transform;
 
@@ -471,13 +471,13 @@ public class TurretBase : MonoBehaviour
         //print("GetWeakest");
 
         Transform weakest = hits[0].transform;
-        float leastHP = hits[0].transform.GetComponent<EnemyBase>().GetHP();
+        float leastHP = hits[0].transform.GetComponent<EnemyBase>().Health;
 
         foreach (RaycastHit2D hit in hits)
         {
             try
             {
-                if (hit.transform.GetComponent<EnemyBase>().GetHP() < leastHP)
+                if (hit.transform.GetComponent<EnemyBase>().Health < leastHP)
                 {
                     if (EnsureTargetCanBeTargeted(hit.transform)) weakest = hit.transform;
                 }
