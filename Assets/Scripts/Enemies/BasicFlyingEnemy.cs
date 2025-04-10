@@ -22,11 +22,6 @@ public class BasicFlyingEnemy : EnemyBase
         return base.GetAgent();
     }
 
-    public override int GetDamage()
-    {
-        return base.GetDamage();
-    }
-
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
@@ -55,11 +50,6 @@ public class BasicFlyingEnemy : EnemyBase
     protected override void Move()
     {
         base.Move();
-    }
-
-    protected override void SetNewTileTarget()
-    {
-        base.SetNewTileTarget();
     }
 
     protected override void Start()

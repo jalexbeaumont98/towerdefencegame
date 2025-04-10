@@ -10,6 +10,7 @@ public class WaveAction
     public string enemyType; // Base enemy type name
     public string prototype; // Optional prototype name
     public Dictionary<string, object> variations; // Collection of fields to update the prototype
+    public List<string> statuses;
     public int amount; // Number of enemies to spawn
     public float duration; // Duration of the action
 
@@ -25,6 +26,8 @@ public class WaveAction
         this.enemyType = enemyType;
         this.prototype = prototype;
         this.variations = variations ?? new Dictionary<string, object>(); // Initialize if null
+        this.statuses = statuses ?? new List<string>(); // Initialize if null
+        
         this.amount = amount;
         this.duration = duration;
     }
@@ -35,4 +38,5 @@ public class WaveAction
         return !string.IsNullOrEmpty(prototype);
     }
 }
+
 

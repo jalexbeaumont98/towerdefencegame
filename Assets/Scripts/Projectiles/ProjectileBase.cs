@@ -16,6 +16,7 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] protected LayerMask wallLayer;
     [SerializeField] protected Animator anim;
     [SerializeField] public Sprite icon;
+    [SerializeField] protected List<GameObject> statuses;
 
 
     [Header("Attributes")]
@@ -176,7 +177,7 @@ public class ProjectileBase : MonoBehaviour
 
         if (enemy)
         {
-            if (enemy.GetFlying() && !canHitFlying) return;
+            if (enemy.Flying && !canHitFlying) return;
 
             if (impact_explosion)
             {
@@ -185,6 +186,9 @@ public class ProjectileBase : MonoBehaviour
             }
 
             enemy.TakeDamage(damage);
+
+            foreach (GameObject status in statuses) enemy.AddStatus(status.GetComponent<EnemyStatus>());
+
             HandlePostCollisionEnemy();
         }
         /*

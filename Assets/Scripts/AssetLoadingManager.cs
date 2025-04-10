@@ -88,7 +88,7 @@ public class AssetLoadingManager : MonoBehaviour
         foreach (var wave in waveData.waves)
         {
             print(wave.description);
-            
+
             foreach (var action in wave.actions)
             {
                 if (action.type == "spawn")
@@ -112,8 +112,9 @@ public class AssetLoadingManager : MonoBehaviour
                                 else enemyPrefab = GetEnemyDuplicate(action.prototype).prefab;
 
                                 //set variations
-                                enemy.prefab = CreateModifiedClone(enemyPrefab, action.enemyType, action.variations);
-                                
+                                enemy.prefab = CreateModifiedClone(enemyPrefab, action.enemyType, action.variations, action.statuses);
+
+
                                 enemyDataList.Add(enemy);
 
                             }
@@ -189,7 +190,7 @@ public class AssetLoadingManager : MonoBehaviour
         }
     }
 
-    public GameObject CreateModifiedClone(GameObject originalPrefab, string newName, Dictionary<string, object> variations)
+    public GameObject CreateModifiedClone(GameObject originalPrefab, string newName, Dictionary<string, object> variations, List<string> statuses)
     {
         if (originalPrefab == null)
         {
@@ -208,7 +209,7 @@ public class AssetLoadingManager : MonoBehaviour
 
         PrintDictionaryContents(variations);
 
-        clonedObject.GetComponent<EnemyBase>().SetVariations(variations);
+        clonedObject.GetComponent<EnemyBase>().SetVariations(variations, statuses);
 
         // Return the modified object
         return clonedObject;
@@ -282,11 +283,11 @@ public class AssetLoadingManager : MonoBehaviour
             {
                 print("turret is not null!");
 
-                
+
                 if (turret == null || string.IsNullOrEmpty(turret.name) || string.IsNullOrEmpty(turret.tile)) continue;
 
                 if (!turret.unlocked) continue;
-                
+
 
                 Tile tile = await LoadAddressableAssetAsync<Tile>("TileBases/" + turret.tile);
 

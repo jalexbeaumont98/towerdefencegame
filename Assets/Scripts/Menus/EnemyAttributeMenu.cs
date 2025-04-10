@@ -13,11 +13,11 @@ public class EnemyAttributeMenu : MonoBehaviour
     [SerializeField] EnemyBase enemy;
     [SerializeField] Image enemyImage;
     [SerializeField] TextMeshProUGUI enemyNameText;
-    [SerializeField] Slider healthBar;
-    [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI description;
     [SerializeField] Toggle stealthIndicator;
     [SerializeField] Toggle flyingIndicator;
+
+    [SerializeField] EnemyHealthBar healthBar;
 
 
 
@@ -77,18 +77,15 @@ public class EnemyAttributeMenu : MonoBehaviour
             Debug.Log($"Unable to parse");
         }
 
-        healthBar.maxValue = maxHealth;
-        healthBar.value = health;
-
-        healthText.text = health + "/" + maxHealth + " HP";
+        healthBar.SetHealthBar(health, maxHealth);
 
         description.text = info["description"];
 
-        stealthIndicator.isOn = enemy.GetStealth();
-        flyingIndicator.isOn = enemy.GetFlying();
+        stealthIndicator.isOn = enemy.Stealth;
+        flyingIndicator.isOn = enemy.Flying;
 
 
-        SetEnemyImage(enemy.GetSprite(), enemy.GetStealth());
+        SetEnemyImage(enemy.GetSprite(), enemy.Stealth);
 
 
 
@@ -101,9 +98,8 @@ public class EnemyAttributeMenu : MonoBehaviour
 
         else
         {
-            healthBar.value = enemy.GetHP();
-            healthText.text = enemy.GetHP() + "/" + enemy.GetMaxHP() + " HP";
-
+            healthBar.SetHealthBar(newHealth);
+            
         }
 
     }

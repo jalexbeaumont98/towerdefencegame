@@ -20,6 +20,12 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected Sprite backSprite;
     [SerializeField] protected Sprite leftSprite;
     [SerializeField] protected Sprite rightSprite;
+    [SerializeField] protected List<EnemyStatus> statuses;
+    [SerializeField] protected List<EnemyStatus> startStatuses;
+    [SerializeField] protected GameObject statusBar;
+    [SerializeField] protected EnemyStatusBar statusBarScript;
+    [SerializeField] protected EnemyHealthBar healthBar;
+
 
 
     [Header("Attributes")]
@@ -31,21 +37,25 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected int shield;
     [SerializeField] protected int reward;
     [SerializeField] protected int damage;
-    [SerializeField] protected int pathMode;
     [SerializeField] protected bool stealth;
     [SerializeField] protected bool flying;
-    [SerializeField] protected float minimumDistance;
     [SerializeField] protected LayerMask layerMask;
-    [SerializeField] protected float minAnimTime;
     [SerializeField] protected string description;
+    [SerializeField] protected Vector3 uiOffsetVector = Vector3.zero;
+
+
+
 
     protected NavMeshPath path;
     protected NavMeshPath oldPath;
     protected float elapsed = 0.0f;
 
     bool selected;
+    float minAnimTime;
 
-    protected string newAgentTypeName = "Flying"; // The name of the new agent type (e.g., "Humanoid", "Small")
+
+    public Dictionary<string, int> statusAmounts = new Dictionary<string, int>();
+
 
     protected GameObject selectedHighlightPrefab;
 
@@ -53,7 +63,88 @@ public class EnemyBase : MonoBehaviour
 
     public event OnEnemySelectedChange onEnemySelectedChange;
 
+    #region Get Set
+    public string EnemyName
+    {
+        get { return enemyName; }
+        set { enemyName = value; }
+    }
 
+    public int Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
+
+    public int MaxHealth
+    {
+        get { return maxHealth; }
+        set { maxHealth = value; }
+    }
+
+    public float Speed
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
+
+    public int Armor
+    {
+        get { return armor; }
+        set { armor = value; }
+    }
+
+    public int Shield
+    {
+        get { return shield; }
+        set { shield = value; }
+    }
+
+    public int Reward
+    {
+        get { return reward; }
+        set { reward = value; }
+    }
+
+    public int Damage
+    {
+        get { return damage; }
+        set { damage = value; }
+    }
+
+    public bool Stealth
+    {
+        get { return stealth; }
+        set { stealth = value; }
+    }
+
+    public bool Flying
+    {
+        get { return flying; }
+        set { flying = value; }
+    }
+
+    public LayerMask LayerMask
+    {
+        get { return layerMask; }
+        set { layerMask = value; }
+    }
+
+    public string Description
+    {
+        get { return description; }
+        set { description = value; }
+    }
+
+    public Vector3 UiOffsetVector
+    {
+        get { return uiOffsetVector; }
+        set { uiOffsetVector = value; }
+    }
+
+    #endregion
+
+    #region Setup
     protected virtual void Start()
     {
 
@@ -73,31 +164,16 @@ public class EnemyBase : MonoBehaviour
         oldPath = path;
 
         maxHealth = health;
-        if (stealth) SetStealth();
+
+        CreateStatusBar();
+
+        foreach (EnemyStatus status in startStatuses) AddStatus(status);
+
+        print("ive been spawned!");
+
     }
 
-
-    public virtual int GetHP()
-    {
-        return health;
-    }
-
-    public virtual int GetMaxHP()
-    {
-        return maxHealth;
-    }
-
-    public virtual bool GetStealth()
-    {
-        return stealth;
-    }
-
-    public virtual bool GetFlying()
-    {
-        return flying;
-    }
-
-    public void SetVariations(Dictionary<string, object> variations)
+    public void SetVariations(Dictionary<string, object> variations, List<string> statuses)
     {
         // Modify speed if specified
         if (variations.ContainsKey("speed") && variations["speed"] is double speedValue)
@@ -144,7 +220,23 @@ public class EnemyBase : MonoBehaviour
         {
             this.description = description;
         }
+
+        foreach (string status in statuses)
+        {
+            var newstatus = GameState.Instance.GetStatus(status);
+
+            if (status != null)
+            {
+                startStatuses.Add(newstatus);
+            }
+            else
+            {
+                Debug.LogWarning("Status is null and was not added to startStatuses.");
+            }
+        }
     }
+
+    #endregion
 
 
     public virtual void TakeDamage(int damage)
@@ -153,16 +245,13 @@ public class EnemyBase : MonoBehaviour
 
         if (selected) onEnemySelectedChange?.Invoke(health);
 
+        healthBar?.SetHealthBar(health);
+
         if (health <= 0)
         {
             DeselectEnemy();
             Die();
         }
-    }
-
-    public virtual int GetDamage()
-    {
-        return damage;
     }
 
     public virtual Sprite GetSprite()
@@ -173,11 +262,6 @@ public class EnemyBase : MonoBehaviour
     public virtual NavMeshAgent GetAgent()
     {
         return agent;
-    }
-
-    public virtual void SetDescription(string description)
-    {
-        this.description = description;
     }
 
     public GameObject SelectEnemy(GameObject prefab)
@@ -229,22 +313,14 @@ public class EnemyBase : MonoBehaviour
     public virtual void Die(bool goal = false)
     {
         gameState.RemoveEnemyFromList(this);
+        Destroy(statusBar);
 
         if (!goal) gameState.SetMoney(reward);
 
         Destroy(gameObject);
     }
 
-    protected virtual void SetStealth()
-    {
-        Color color = spriteRenderer.color;
 
-        // Set the alpha (transparency) value
-        color.a = Mathf.Clamp01(0.8f); // Ensure transparency is between 0 and 1
-
-        // Apply the new color
-        spriteRenderer.color = color;
-    }
 
     protected virtual void Move()
     {
@@ -308,7 +384,7 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
- 
+
     protected virtual void DebugPath()
     {
         oldPath = path;
@@ -345,12 +421,6 @@ public class EnemyBase : MonoBehaviour
         return CalculateNewPath();
     }
 
-    protected virtual void SetNewTileTarget()
-    {
-
-
-        pathMode = 1;
-    }
 
     protected virtual bool FindPathObstruction()
     {
@@ -417,5 +487,111 @@ public class EnemyBase : MonoBehaviour
 
             return true;
         }
+    }
+
+
+    public virtual void AddStatus(EnemyStatus status)
+    {
+
+        if (statusAmounts.ContainsKey(status.type))
+        {
+            if (!status.stackable) return;
+
+            statusAmounts[status.type] = statusAmounts[status.type]++;
+            statusBarScript?.StackAttribute(status, statusAmounts[status.type]);
+
+        }
+
+        else
+        {
+            statusAmounts.Add(status.type, 1);
+            statusBarScript?.AddStatusIcon(status);
+        }
+
+        statuses.Add(status.SetStatus(this));
+        if (status.isTimed) StartCoroutine(RemoveStatusCo(status.statusTime, status));
+    }
+
+    public virtual void RemoveStatus(EnemyStatus status)
+    {
+        
+
+        statusAmounts[status.type]--;
+
+        if (statusAmounts[status.type] > 0)
+        {
+
+            statusBarScript?.RemoveStatusIcon(status, statusAmounts[status.type]);
+        }
+
+        else
+        {
+            statusAmounts.Remove(status.type);
+            statusBarScript?.RemoveStatusIcon(status);
+        }
+
+        status.RemoveStatus(this);
+        statuses.Remove(status);
+
+
+    }
+
+    private IEnumerator RemoveStatusCo(float delay, EnemyStatus status)
+    {
+        yield return new WaitForSeconds(delay);
+
+        RemoveStatus(status);
+
+    }
+
+    public virtual void SetStealth(bool input = true)
+    {
+
+        stealth = input;
+
+        Color color = spriteRenderer.color;
+
+        if (input)
+        {
+            // Set the alpha (transparency) value
+            color.a = Mathf.Clamp01(0.8f); // Ensure transparency is between 0 and 1
+        }
+
+        else
+        {
+            color.a = 1;
+        }
+
+        // Apply the new color
+        spriteRenderer.color = color;
+    }
+
+    public virtual void SetFlying(bool input = true)
+    {
+        flying = input;
+    }
+
+    public void ModifySpeed(float modifier)
+    {
+        speed = speed / modifier;
+        agent.speed = speed;
+
+    }
+
+    private void CreateStatusBar()
+    {
+
+        GameObject canvas = GameObject.FindGameObjectWithTag("MainCanvas");
+
+        statusBar = Instantiate(GameState.Instance.enemyStatusBarPrefab, canvas.transform);
+        statusBar.SetActive(true);
+
+        statusBar.GetComponent<UIAnchor>().SetAnchor(this.transform, uiOffsetVector);
+
+        healthBar = statusBar.GetComponent<EnemyHealthBar>();
+        healthBar.SetHealthBar(health, maxHealth);
+
+        statusBarScript = statusBar.GetComponent<EnemyStatusBar>();
+
     }
 }
