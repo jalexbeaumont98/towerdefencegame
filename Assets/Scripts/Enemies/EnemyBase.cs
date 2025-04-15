@@ -30,6 +30,7 @@ public class EnemyBase : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] public string enemyName;
+    [SerializeField] public bool pathValidator = false;
     [SerializeField] protected int health;
     [SerializeField] protected int maxHealth;
     [SerializeField] protected float speed;
@@ -54,14 +55,20 @@ public class EnemyBase : MonoBehaviour
     float minAnimTime;
 
 
-    public Dictionary<string, int> statusAmounts = new Dictionary<string, int>();
+    public Dictionary<string, EnemyStatusData> statusAmounts = new Dictionary<string, EnemyStatusData>();
 
 
     protected GameObject selectedHighlightPrefab;
 
+    #region Events
     public delegate void OnEnemySelectedChange(int newHealth);
 
     public event OnEnemySelectedChange onEnemySelectedChange;
+
+    public event Action<EnemyStatusData> OnStatusAdded;
+    public event Action<EnemyStatusData> OnStatusRemoved;
+
+    #endregion
 
     #region Get Set
     public string EnemyName
@@ -85,7 +92,7 @@ public class EnemyBase : MonoBehaviour
     public float Speed
     {
         get { return speed; }
-        set { speed = value; }
+        set { speed = value; agent.speed = speed; }
     }
 
     public int Armor
@@ -165,11 +172,16 @@ public class EnemyBase : MonoBehaviour
 
         maxHealth = health;
 
-        CreateStatusBar();
+        if (!pathValidator)
+        {
+            CreateStatusBar();
 
-        foreach (EnemyStatus status in startStatuses) AddStatus(status);
+            foreach (EnemyStatus status in startStatuses) AddStatus(status);
 
-        print("ive been spawned!");
+            print("ive been spawned!");
+        }
+
+
 
     }
 
@@ -497,16 +509,16 @@ public class EnemyBase : MonoBehaviour
         {
             if (!status.stackable) return;
 
-            statusAmounts[status.type] = statusAmounts[status.type]++;
-            statusBarScript?.StackAttribute(status, statusAmounts[status.type]);
+            statusAmounts[status.type].stackCount++;
 
         }
 
         else
         {
-            statusAmounts.Add(status.type, 1);
-            statusBarScript?.AddStatusIcon(status);
+            statusAmounts.Add(status.type, new EnemyStatusData(status));
         }
+
+        OnStatusAdded?.Invoke(statusAmounts[status.type].CloneStatusData());
 
         statuses.Add(status.SetStatus(this));
         if (status.isTimed) StartCoroutine(RemoveStatusCo(status.statusTime, status));
@@ -514,21 +526,17 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void RemoveStatus(EnemyStatus status)
     {
-        
 
-        statusAmounts[status.type]--;
-
-        if (statusAmounts[status.type] > 0)
+        if (statusAmounts.ContainsKey(status.type))
         {
+            statusAmounts[status.type].stackCount--;
 
-            statusBarScript?.RemoveStatusIcon(status, statusAmounts[status.type]);
         }
+        else return;
 
-        else
-        {
-            statusAmounts.Remove(status.type);
-            statusBarScript?.RemoveStatusIcon(status);
-        }
+        OnStatusRemoved?.Invoke(statusAmounts[status.type].CloneStatusData());
+
+        if (statusAmounts[status.type].stackCount <= 0) statusAmounts.Remove(status.type);
 
         status.RemoveStatus(this);
         statuses.Remove(status);
@@ -592,6 +600,6 @@ public class EnemyBase : MonoBehaviour
         healthBar.SetHealthBar(health, maxHealth);
 
         statusBarScript = statusBar.GetComponent<EnemyStatusBar>();
-
+        statusBarScript.Initialize(this);
     }
 }

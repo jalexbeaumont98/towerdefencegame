@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8062478675027841280
+--- !u!1 &4047894619054286461
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8057214104408759727}
-  - component: {fileID: 1076704633210262439}
+  - component: {fileID: 4044695245557372956}
+  - component: {fileID: 4089276186973708205}
   m_Layer: 0
-  m_Name: GlueStatusBase
+  m_Name: FlyingStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8057214104408759727
+--- !u!4 &4044695245557372956
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8062478675027841280}
+  m_GameObject: {fileID: 4047894619054286461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1297.0745, y: 496.44647, z: 0.23602271}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1076704633210262439
+--- !u!114 &4089276186973708205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8062478675027841280}
+  m_GameObject: {fileID: 4047894619054286461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dac2b1bcf7c740ca8a5cb7e6c0c2aeb, type: 3}
+  m_Script: {fileID: 11500000, guid: a83c7039848d64306ae04cc81ab25617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTimed: 1
-  statusTime: 2
-  type: 
+  isTimed: 0
+  statusTime: 1
+  type: flying
   stackable: 0
-  icon: {fileID: -868871276, guid: eda4cd24611cb4b3d9b2e5ce3c56e4fe, type: 3}
-  speedModifier: 2
+  sprite: {fileID: -2064717847, guid: eda4cd24611cb4b3d9b2e5ce3c56e4fe, type: 3}

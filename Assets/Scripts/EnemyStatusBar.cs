@@ -8,147 +8,243 @@ public class EnemyStatusBar : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject bar;
     [SerializeField] GameObject statusIconPrefab;
-    [SerializeField] List<GameObject> statusIcons;
-    [SerializeField] List<EnemyStatus> extraStatuses;
+    [SerializeField] List<GameObject> statusIconPool;
+    [SerializeField] List<EnemyStatusData> extraStatuses;
     [SerializeField] private EnemyStatus fullstatus;
+    [SerializeField] private GameObject fullIconGameObject;
+    [SerializeField] private EnemyBase enemy;
 
 
     [Header("Attributes")]
     [SerializeField] private int maxStatuses;
+    [SerializeField] private int statusCount = 0;
 
     private bool isFull;
 
+    private Dictionary<string, EnemyStatusData> statusAmounts = new Dictionary<string, EnemyStatusData>();
 
-    void Start()
+
+    void Awake()
     {
-        statusIcons = new List<GameObject>();
-        extraStatuses = new List<EnemyStatus>();
 
-        
+        extraStatuses = new List<EnemyStatusData>();
+        statusIconPool = new List<GameObject>();
+
     }
 
 
-    public void AddStatusIcon(EnemyStatus status)
+
+
+    public void Initialize(EnemyBase e)
     {
-        if (statusIcons.Count <= maxStatuses)
+        enemy = e;
+
+        enemy.OnStatusAdded += AddStatusIcon;
+        enemy.OnStatusRemoved += RemoveStatusIcon;
+    }
+
+    private void AddStatusIcon(EnemyStatusData statusData)
+    {
+        /*
+            If status already shown and stackable:
+                Find existing StatusIcon
+                Increment count
+            Else if currentIconCount < maxIcons:
+                Create StatusIcon
+                Add to visibleIcons
+            Else:
+                Add to overflowQueue
+                Show or update maxIcon
+
+        */
+
+        if (statusAmounts.ContainsKey(statusData.status.type)) //if it contains the key (stackable check is handled by enemyBase script)
         {
-            GameObject newIcon = Instantiate(statusIconPrefab, bar.transform);
-            statusIconPrefab.GetComponent<StatusIcon>().SetIcon(status);
-            statusIcons.Add(newIcon);
+            if (statusAmounts[statusData.status.type].icon != null) //this is the check to see if its showing (ie not in the excess status list)
+            {
+                statusAmounts[statusData.status.type].icon.GetComponent<StatusIcon>().SetText(statusData.stackCount); //set icon text
+            }
+
+            statusAmounts[statusData.status.type].stackCount = statusData.stackCount;
+
+            return;
+
+        }
+
+        else if (statusCount < maxStatuses)
+        {
+            GameObject statusIcon;
+
+            statusIcon = GetFromPool();
+
+            statusCount++;
+            statusIcon.GetComponent<StatusIcon>().SetIcon(statusData.status.sprite);
+
+            statusData.icon = statusIcon;
+            statusAmounts.Add(statusData.status.type, statusData); //add to status dict
+            
         }
 
         else
         {
-            extraStatuses.Add(status);
-            SetBarFull();
+
+            extraStatuses.Add(statusData); //add the statusData to the extra statuses list
+            statusAmounts.Add(statusData.status.type, statusData); //also add to status dict
+
         }
+
+        //SetMax();
+
 
 
     }
 
-    public bool RemoveStatusIcon(EnemyStatus status, int amount = -1)
-    {
-        GameObject statusIcon = null;
 
-        foreach (GameObject go in statusIcons)
+
+    private void RemoveStatusIcon(EnemyStatusData statusData)
+    {
+        /*
+
+            Find matching StatusIcon
+            If stackable and count > 1:
+                If a visible icon:
+                    Update text
+                Decrement count
+            Else:
+                If a visible icon:
+                    Remove and destroy icon
+                    If overflowQueue not empty:
+                        Dequeue and add to visible
+                        Update maxIcon if needed
+                Remove from status dict
+                Remove from excess list
+
+        */
+
+        if (!statusAmounts.ContainsKey(statusData.status.type)) return;
+
+        GameObject icon = statusAmounts[statusData.status.type].icon;
+
+        if (statusData.stackCount > 0)
         {
-            if (status.type == go.GetComponent<StatusIcon>().status.type)
+            if (icon != null)
             {
-                print("found status icon");
-                statusIcon = go;
+                statusAmounts[statusData.status.type].icon.GetComponent<StatusIcon>().SetText(statusData.stackCount);
             }
+
+            statusAmounts[statusData.status.type].stackCount = statusData.stackCount;
         }
 
-        if (statusIcon != null)
+        else
         {
-            if (amount > 0)
+            if (icon != null) //recall that this also serves as a check for whether or not the status is a visible one or in the excess list
             {
-                print("amount so no delete!");
-                statusIcon.GetComponent<StatusIcon>().SetText(amount);
+                AddBackToPool(icon);
+                statusCount--;
+
+                SetMax();
             }
 
             else
             {
-                statusIcons.Remove(statusIcon);
-                Destroy(statusIcon);
+                EnemyStatusData statusDataToRemove = null;
 
-                print("icon should be deleted");
-                SetBarFull();
+                foreach (EnemyStatusData estatusData in extraStatuses)
+                {
+                    if (estatusData.status.type == statusData.status.type) statusDataToRemove = estatusData;
+                }
 
+                if (statusDataToRemove != null) extraStatuses.Remove(statusDataToRemove);
             }
 
-            return true;
-        }
-
-        EnemyStatus status_ = null;
-
-        foreach (EnemyStatus exstatus in extraStatuses)
-        {
-            if (exstatus.type == status.type)
-            {
-                status_ = exstatus;
-            }
+            statusAmounts.Remove(statusData.status.type);
 
         }
-
-        if (status_ != null)
-        {
-            extraStatuses.Remove(status_);
-            SetBarFull();
-            return true;
-        }
-
-
-
-        return false;
 
 
     }
 
-    public void StackAttribute(EnemyStatus status, int amount)
+    private void SetMax()
     {
-        foreach (GameObject go in statusIcons)
+        //If statusCount >= maxStatuses
+        //instantiate maxIcon
+
+        if (statusCount >= maxStatuses)
         {
-            EnemyStatus statusItem = go.GetComponent<StatusIcon>().status;
 
-            if (statusItem.type == status.type)
-            {
-                go.GetComponent<StatusIcon>().SetText(amount);
-            }
-        }
-    }
-
-    private void SetBarFull()
-    {
-        if (statusIcons.Count > maxStatuses)
-        {
-            if (isFull) return;
-
-
-            GameObject newIcon = Instantiate(statusIconPrefab, bar.transform);
-            statusIconPrefab.GetComponent<StatusIcon>().SetIcon(fullstatus);
-
-            isFull = true;
-
+            SpawnMaxIcon();
         }
 
         else
         {
-            if (!isFull) return;
 
-            GameObject go = statusIcons[maxStatuses];
-            statusIcons.RemoveAt(maxStatuses);
-            Destroy(go);
-
-            if (extraStatuses.Count > 0)
+            if (extraStatuses.Count > 0) 
             {
-                AddStatusIcon(extraStatuses[0]);
-                extraStatuses.RemoveAt(0);
+                EnemyStatusData newStatusData = extraStatuses[0];
+                extraStatuses.Remove(newStatusData);
+                AddStatusIcon(newStatusData);
             }
 
-            isFull = false;
+            else
+            {
+                if (fullIconGameObject != null) AddBackToPool(fullIconGameObject);
+            }
+
+
 
         }
+
+    }
+
+    private void SpawnMaxIcon()
+    {
+        if (fullIconGameObject != null)
+        {
+            fullIconGameObject.GetComponent<StatusIcon>().SetText(extraStatuses.Count);
+        }
+
+        else
+        {
+            fullIconGameObject = GetFromPool();
+            fullIconGameObject.GetComponent<StatusIcon>().SetIcon(fullstatus.sprite);
+            fullIconGameObject.GetComponent<StatusIcon>().SetText(extraStatuses.Count);
+            fullIconGameObject.transform.SetAsLastSibling();
+
+        }
+    }
+
+    private void OnDestroy()
+    {
+
+        enemy.OnStatusAdded -= AddStatusIcon;
+        enemy.OnStatusRemoved -= RemoveStatusIcon;
+    }
+
+    private GameObject GetFromPool()
+    {
+
+        GameObject go = null;
+
+        if (statusIconPool.Count > 0) //get from pool if you can
+        {
+            go = statusIconPool[0];
+            statusIconPool.RemoveAt(0);
+            go.SetActive(true);
+        }
+
+        else //otherwise make a new one, itll get added the pool later
+        {
+            go = Instantiate(statusIconPrefab, bar.transform);
+        }
+
+        return go;
+    }
+
+    private void AddBackToPool(GameObject go)
+    {
+        go.SetActive(false);
+
+        statusIconPool.Add(go);
     }
 
 

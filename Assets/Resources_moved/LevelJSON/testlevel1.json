@@ -13,7 +13,14 @@
                     },
                     "statuses": [],
                     "amount": 3,
-                    "duration": 1
+                    "duration": 2
+                },
+                {
+                    "type": "wait",
+                    "enemyType": "",
+                    "prototype": "",
+                    "amount": 0,
+                    "duration": 3
                 },
                 {
                     "type": "spawn",
@@ -21,8 +28,15 @@
                     "prototype": "",
                     "variations": {},
                     "statuses": [],
-                    "amount": 5,
-                    "duration": 0.5
+                    "amount": 3,
+                    "duration": 1
+                },
+                {
+                    "type": "wait",
+                    "enemyType": "",
+                    "prototype": "",
+                    "amount": 0,
+                    "duration": 3
                 },
                 {
                     "type": "spawn",
@@ -36,7 +50,7 @@
                     },
                     "statuses": ["stealth"],
                     "amount": 3,
-                    "duration": 0.8
+                    "duration": 1
                 },
                 {
                     "type": "wait",
