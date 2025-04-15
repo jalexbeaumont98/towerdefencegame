@@ -7,32 +7,29 @@ using UnityEngine.UI;
 
 public class StatusIcon : MonoBehaviour
 {
-    public EnemyStatus status;
     public Sprite sprite;
 
     public TMP_Text amountText;
 
-    public UnityEngine.UI.Image image;
+    [SerializeField] public UnityEngine.UI.Image image;
 
     void Start()
     {
         //image = GetComponent<UnityEngine.UI.Image>();
     }
 
-    public void SetIcon(EnemyStatus status)
+    public void SetIcon(Sprite sprite)
     {
-
         
-        this.status = status;
-        image.sprite = status.icon;
-
-        
+        print("image should be set!");
+        Debug.Log($"Setting sprite: {sprite?.name ?? "NULL"}");
+        image.sprite = sprite;
 
     }
 
     public void SetText(int amount)
     {
-        if (amount > 0)
+        if (amount > 1)
         {
             amountText.gameObject.SetActive(true);
             amountText.text = amount.ToString();
