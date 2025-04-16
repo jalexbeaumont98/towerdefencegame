@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 94d16826d6de64cf4bc041a1fcdaf7b2
+guid: e45dcbaae49a14a0f8c7cd8af33688bf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,148 +123,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: aoeturret_turrets_0
+      name: glueturret_turrets_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f18dea6f338441f3a0d718028a5d20c
-      internalID: 1673890554
+      spriteID: fa5652f6c3cc24efc81266b1f8f1e1be
+      internalID: -1464655780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_1
+      name: glueturret_turrets_1
       rect:
         serializedVersion: 2
-        x: 8
+        x: 12
         y: 0
-        width: 8
-        height: 8
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e97d1a3abc0e14883b19faf35c7c2350
-      internalID: -1194327977
+      spriteID: 668ebfa656e994fa4844765a95e41bb4
+      internalID: 923905174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_2
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c2c6c0c685414513a60a1671e89adea
-      internalID: 1148170437
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aoeturret_turrets_3
+      name: glueturret_turrets_2
       rect:
         serializedVersion: 2
         x: 24
         y: 0
-        width: 8
-        height: 8
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c52791e5186f348bb838952b8c5b1c3f
-      internalID: -824464494
+      spriteID: 6a741a88db65b4007a33c9bae7e3aa48
+      internalID: 1416359726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_4
+      name: glueturret_turrets_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 36
         y: 0
-        width: 8
-        height: 8
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76ffee6622a3a484480f1b05b5927844
-      internalID: -1084963562
+      spriteID: 9938f7fb500e743a8b549d8fd93c9d10
+      internalID: 1094965509
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aoeturret_turrets_5
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dab2489709d1c4d5aadcfcac7f668d34
-      internalID: 317782292
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aoeturret_turrets_6
+      name: glueturret_turrets_4
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 8
-        height: 8
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30949b3881e7c4d5f97a6b3f3fb1e7d3
-      internalID: 546538831
+      spriteID: 9da5d30d852d741c082b713dca1c7a00
+      internalID: 410648009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glueturret_turrets_5
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0c81c8cb8c3f47d19cae81525049ccd
+      internalID: -1594017229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glueturret_turrets_6
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b2901caab1341e99ed059cee8090ee
+      internalID: 148912313
       vertices: []
       indices: 
       edges: []
@@ -280,13 +280,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      aoeturret_turrets_0: 1673890554
-      aoeturret_turrets_1: -1194327977
-      aoeturret_turrets_2: 1148170437
-      aoeturret_turrets_3: -824464494
-      aoeturret_turrets_4: -1084963562
-      aoeturret_turrets_5: 317782292
-      aoeturret_turrets_6: 546538831
+      glueturret_turrets_0: -1464655780
+      glueturret_turrets_1: 923905174
+      glueturret_turrets_2: 1416359726
+      glueturret_turrets_3: 1094965509
+      glueturret_turrets_4: 410648009
+      glueturret_turrets_5: -1594017229
+      glueturret_turrets_6: 148912313
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

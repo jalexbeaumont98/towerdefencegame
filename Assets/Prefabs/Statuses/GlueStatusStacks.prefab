@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8062478675027841280
+--- !u!1 &338923718686777416
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8057214104408759727}
-  - component: {fileID: 1076704633210262439}
+  - component: {fileID: 5526789177304492745}
+  - component: {fileID: 6480638829501183032}
   m_Layer: 0
-  m_Name: GlueStatusBase
+  m_Name: GlueStatusStacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8057214104408759727
+--- !u!4 &5526789177304492745
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8062478675027841280}
+  m_GameObject: {fileID: 338923718686777416}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1076704633210262439
+--- !u!114 &6480638829501183032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8062478675027841280}
+  m_GameObject: {fileID: 338923718686777416}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dac2b1bcf7c740ca8a5cb7e6c0c2aeb, type: 3}
@@ -47,6 +47,6 @@ MonoBehaviour:
   isTimed: 1
   statusTime: 2
   type: 
-  stackable: 0
+  stackable: 1
   sprite: {fileID: -868871276, guid: eda4cd24611cb4b3d9b2e5ce3c56e4fe, type: 3}
-  speedModifier: 1.5
+  speedModifier: 1.2

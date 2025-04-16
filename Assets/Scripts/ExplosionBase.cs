@@ -10,7 +10,9 @@ public class ExplosionBase : MonoBehaviour
 
 
     [Header("Attributes")]
-    [SerializeField] private int damage;
+    [SerializeField] protected int damage;
+
+    [SerializeField] protected List<GameObject> statuses;
     
     protected virtual void Start()
     {
@@ -27,6 +29,8 @@ public class ExplosionBase : MonoBehaviour
         {
             
             enemy.TakeDamage(damage);
+            
+            foreach (GameObject status in statuses) enemy.AddStatus(status.GetComponent<EnemyStatus>());
             //Destroy(gameObject);
         }
 
