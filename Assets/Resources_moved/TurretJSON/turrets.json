@@ -366,6 +366,121 @@
                     "bulletDescription": ""
                 }
             ]
+        },
+        {
+            "name": "Glue Gun",
+            "price": 80,
+            "sellPrice": 40,
+            "prefab": "GlueTurret",
+            "tile": "glueturret_tiles_0",
+            "description": "A turret that deals no damage on impact but slows any enemy it hits.",
+            "unlocked": true,
+            "upgradePath1": [
+                {
+                    "upgradePath": 0,
+                    "price": 120,
+                    "fireRate": 0,
+                    "rotationSpeed": 0,
+                    "targetingRange": 0.5,
+                    "isNewSprite": true,
+                    "isNewTile": false,
+                    "isNewBullet": true,
+                    "canTargetStealth": false,
+                    "canTargetFlying": false,
+                    "newSprite": "Barrel_GlueGun_A1.prefab",
+                    "newTile": "",
+                    "newBullet": "GlueBullet_A1.prefab",
+                    "description": "",
+                    "bulletDescription": ""
+                },
+                {
+                    "upgradePath": 0,
+                    "price": 60,
+                    "fireRate": -0.1,
+                    "rotationSpeed": 0,
+                    "targetingRange": 1,
+                    "isNewSprite": true,
+                    "isNewTile": false,
+                    "isNewBullet": true,
+                    "canTargetStealth": false,
+                    "canTargetFlying": false,
+                    "newSprite": "Barrel_GlueGun_A2.prefab",
+                    "newTile": "",
+                    "newBullet": "GlueBullet_A2.prefab",
+                    "description": "",
+                    "bulletDescription": ""
+                },
+                {
+                    "upgradePath": 0,
+                    "price": 300,
+                    "fireRate": -0.05,
+                    "rotationSpeed": 0,
+                    "targetingRange": 0,
+                    "isNewSprite": true,
+                    "isNewTile": true,
+                    "isNewBullet": false,
+                    "canTargetStealth": false,
+                    "canTargetFlying": false,
+                    "newSprite": "Barrel_GlueGun_A3.prefab",
+                    "newTile": "glueturret_tiles_A3",
+                    "newBullet": "GlueBullet_A3.prefab",
+                    "description": "",
+                    "bulletDescription": ""
+                }
+            ],
+            "upgradePath2": [
+                {
+                    "upgradePath": 1,
+                    "price": 75,
+                    "fireRate": 0.4,
+                    "rotationSpeed": 30,
+                    "targetingRange": 0,
+                    "isNewSprite": true,
+                    "isNewTile": false,
+                    "isNewBullet": false,
+                    "canTargetStealth": false,
+                    "canTargetFlying": false,
+                    "newSprite": "Barrel_GlueGun_B1.prefab",
+                    "newTile": "",
+                    "newBullet": "",
+                    "description": "",
+                    "bulletDescription": ""
+                },
+                {
+                    "upgradePath": 1,
+                    "price": 300,
+                    "fireRate": 0,
+                    "rotationSpeed": 0,
+                    "targetingRange": 0,
+                    "isNewSprite": false,
+                    "isNewTile": true,
+                    "isNewBullet": true,
+                    "canTargetStealth": false,
+                    "canTargetFlying": false,
+                    "newSprite": "",
+                    "newTile": "glueturret_tiles_B2.asset",
+                    "newBullet": "GlueBullet_B2.prefab",
+                    "description": "",
+                    "bulletDescription": ""
+                },
+                {
+                    "upgradePath": 1,
+                    "price": 250,
+                    "fireRate": 0.8,
+                    "rotationSpeed": 90,
+                    "targetingRange": -0.2,
+                    "isNewSprite": true,
+                    "isNewTile": false,
+                    "isNewBullet": false,
+                    "canTargetStealth": false,
+                    "canTargetFlying": false,
+                    "newSprite": "Barrel_GlueGun_B3.prefab",
+                    "newTile": "",
+                    "newBullet": "",
+                    "description": "",
+                    "bulletDescription": ""
+                }
+            ]
         }
     ]
 }
