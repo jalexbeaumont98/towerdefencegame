@@ -14,7 +14,8 @@ public class GameState : MonoBehaviour
 
     [SerializeField] public GameObject MainMenuPrefab;
     [SerializeField] public GameObject LoadingBarPrefab;
-    [SerializeField] public List<EnemyStatus> statuses;
+    [SerializeField] public List<GameObject> statuses;
+    [SerializeField] public GameObject statusCloneParent;
 
 
     public IReadOnlyList<TowerPlaceData> Towers => towers;
@@ -263,16 +264,31 @@ public class GameState : MonoBehaviour
         towers.Clear();
     }
 
-    public EnemyStatus GetStatus(string type)
+    public GameObject GetStatus(string type, Dictionary<string, string> attributes = null)
     {
-        foreach(EnemyStatus status in statuses)
+        GameObject statusToGet = null;
+
+        foreach(GameObject status in statuses)
         {
-            if (status.type == type)
-                return status;
+            if (status.GetComponent<EnemyStatus>().type == type)
+            {
+                statusToGet = status;
+                break;
+            }
+               
+        }
+         if (statusToGet == null) return null;
+
+        if (attributes != null)
+        {
+            statusToGet = Instantiate(statusToGet,statusCloneParent.transform);
+            statusToGet.GetComponent<EnemyStatus>().ModifyStatus(attributes);
         }
 
-        return null;
+        return statusToGet;
     }
+
+    
 
 
 

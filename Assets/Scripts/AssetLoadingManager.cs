@@ -326,6 +326,7 @@ public class AssetLoadingManager : MonoBehaviour
             GameObject newSprite = null;
             Tile newTile = null;
             GameObject newBullet = null;
+            List<GameObject> statuses = new List<GameObject>();
 
             // Load new sprite (if applicable)
             if (turretUpgrade.isNewSprite)
@@ -345,6 +346,20 @@ public class AssetLoadingManager : MonoBehaviour
                 newBullet = await LoadAddressableAssetAsync<GameObject>("BulletBases/" + turretUpgrade.newBullet);
             }
 
+            if (turretUpgrade.statuses != null)
+            {
+                print("statuses not null!");
+
+                foreach (TurretStatusData statusData in turretUpgrade.statuses)
+                {
+                    GameObject newStatus = GameState.Instance.GetStatus(statusData.name, statusData.attributes);
+                    if (newStatus != null && newStatus.GetComponent<EnemyStatus>() != null)
+                        statuses.Add(newStatus);
+                }
+            }
+
+
+
             // Create TurretUpgradeData
             upgrades.Add(new TurretUpgradeData(
                 turretUpgrade.upgradePath,
@@ -361,7 +376,8 @@ public class AssetLoadingManager : MonoBehaviour
                 newTile,
                 newBullet,
                 turretUpgrade.description,
-                turretUpgrade.bulletDescription
+                turretUpgrade.bulletDescription,
+                statuses
             ));
         }
 

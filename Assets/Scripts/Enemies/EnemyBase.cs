@@ -239,7 +239,7 @@ public class EnemyBase : MonoBehaviour
 
             if (status != null)
             {
-                startStatuses.Add(newstatus);
+                startStatuses.Add(newstatus.GetComponent<EnemyStatus>());
             }
             else
             {

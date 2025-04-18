@@ -71,6 +71,11 @@ public class ProjectileBase : MonoBehaviour
         }
     }
 
+    public virtual void SetStatuses(List<GameObject> statuses)
+    {
+        this.statuses = statuses;
+    }
+
     public virtual float[] GetStats()
     {
         float[] stats = new float[3];
@@ -182,7 +187,8 @@ public class ProjectileBase : MonoBehaviour
             if (impact_explosion)
             {
                 Vector3 position = transform.position;
-                Instantiate(impact_explosion, position, quaternion.identity);
+                Instantiate(impact_explosion, position, quaternion.identity).GetComponent<ExplosionBase>().SetStatuses(statuses);
+                
             }
 
             enemy.TakeDamage(damage);

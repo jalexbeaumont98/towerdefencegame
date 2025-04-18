@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTimed: 1
   statusTime: 2
-  type: 
+  statusStrength: 1.5
+  type: glue
   stackable: 0
   sprite: {fileID: -868871276, guid: eda4cd24611cb4b3d9b2e5ce3c56e4fe, type: 3}
   speedModifier: 1.5

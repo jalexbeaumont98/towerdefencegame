@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class ExplosionBase : MonoBehaviour
@@ -43,6 +44,11 @@ public class ExplosionBase : MonoBehaviour
         bool isVisible = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
 
         if (!isVisible) Destroy(gameObject);
+    }
+
+    public virtual void SetStatuses(List<GameObject> statuses)
+    {
+        this.statuses = statuses;
     }
 
     public virtual void ExplosionEnd() {

@@ -167,8 +167,7 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   icon: {fileID: 0}
-  statuses:
-  - {fileID: 338923718686777416, guid: 5d23589665fa1424c93f1ee3aa41fac3, type: 3}
+  statuses: []
   bulletSpeed: 20
   damage: 0
   autoTargeting: 0

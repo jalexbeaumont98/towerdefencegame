@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class GlueStatus : EnemyStatus
 {
-
-    public float speedModifier = 2f;
+    
 
     public override EnemyStatus SetStatus(EnemyBase enemy)
     {   
-        float speed = enemy.Speed;
-        speed = speed/speedModifier;
-        enemy.Speed = speed;
         
         return base.SetStatus(enemy);
+    }
+
+    protected override void ApplyStatus(EnemyBase enemy)
+    {
+        float speed = enemy.Speed;
+        speed = speed/statusStrength;
+        enemy.Speed = speed;
+
+        base.ApplyStatus(enemy);
     }
 
     public override void RemoveStatus(EnemyBase enemy)
     {
         float speed = enemy.Speed;
-        speed = speed*speedModifier;
+        speed = speed*statusStrength;
         enemy.Speed = speed;
 
         base.RemoveStatus(enemy);
     }
+
+   
     
 }

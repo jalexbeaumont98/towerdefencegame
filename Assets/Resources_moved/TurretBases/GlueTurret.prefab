@@ -95,6 +95,8 @@ MonoBehaviour:
     description: 
     upgradesA: []
     upgradesB: []
+  statuses:
+  - {fileID: 8062478675027841280, guid: 62e212af3d1c64eb4ba2c4a8d4bf7e3a, type: 3}
   bulletAutoAim: 0
   targetingType: 0
   targetingAngleRange: 7

@@ -206,6 +206,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: status_icons_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6945ca8c74bc4e79bed1cfc27a366e5
+      internalID: 1952239962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -221,6 +242,7 @@ TextureImporter:
       status_icons_1: 1831066056
       status_icons_2: -868871276
       status_icons_3: 851256904
+      status_icons_4: 1952239962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
