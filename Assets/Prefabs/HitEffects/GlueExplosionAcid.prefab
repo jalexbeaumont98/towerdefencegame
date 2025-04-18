@@ -120,5 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  statuses:
-  - {fileID: 8504234632392237395, guid: 2b0e9ddf28c664158b0b7eeb5099b3a7, type: 3}
+  statuses: []

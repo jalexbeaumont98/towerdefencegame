@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
 [Serializable]
@@ -29,5 +30,8 @@ public class TurretUpgrade
     public string description;
 
     public string bulletDescription;
+
+     [JsonProperty("statuses")]
+    public List<TurretStatusData> statuses;
 
 }

@@ -17,6 +17,8 @@ public class TurretBase : MonoBehaviour
     [SerializeField] public GameObject bullet; //todo change back to protected.
     [SerializeField] protected Transform firePoint;
     [SerializeField] public TowerPlaceData towerData;
+    [SerializeField] protected List<GameObject> statuses;
+
 
 
     [Header("Attribute")]
@@ -70,7 +72,7 @@ public class TurretBase : MonoBehaviour
             target = null;
             updateTarget = false;
         }
-        
+
         if (target == null)
         {
             FindTarget();
@@ -289,6 +291,7 @@ public class TurretBase : MonoBehaviour
         ProjectileBase bulletCon = _bullet.GetComponent<ProjectileBase>();
 
         bulletCon.SetTarget(target, -firePoint.up);
+        bulletCon.SetStatuses(statuses);
     }
 
 
@@ -496,6 +499,11 @@ public class TurretBase : MonoBehaviour
         return null;
     }
 
+    public virtual GameObject GetBullet()
+    {
+        return bullet;
+    }
+
     public void SetTargettingType(int type)
     {
         targetingType = type;
@@ -596,6 +604,34 @@ public class TurretBase : MonoBehaviour
         fireRate += upgrade.fireRate;
         rotationSpeed += upgrade.rotationSpeed;
         targetingRange += upgrade.targetingRange;
+
+        if (upgrade.statuses != null && upgrade.statuses.Count > 0)
+        {
+
+            foreach (GameObject status in upgrade.statuses)
+            {
+                GameObject oldStatus = null;
+
+                foreach (GameObject turretStatus in statuses)
+                {
+                    
+                    if (status.GetComponent<EnemyStatus>().type == turretStatus.GetComponent<EnemyStatus>().type)
+                    {
+                        
+                        oldStatus = turretStatus;
+                        break;
+                    }
+                }
+
+                if (oldStatus != null)
+                {
+                    statuses.Remove(oldStatus);
+                }
+
+                statuses.Add(status);
+
+            }
+        }
 
         if (upgrade.targetingRange != 0) SpawnRangeCircle();
 

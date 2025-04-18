@@ -379,24 +379,33 @@
                 {
                     "upgradePath": 0,
                     "price": 120,
-                    "fireRate": 0,
-                    "rotationSpeed": 0,
+                    "fireRate": -0.2,
+                    "rotationSpeed": -30,
                     "targetingRange": 0.5,
                     "isNewSprite": true,
                     "isNewTile": false,
-                    "isNewBullet": true,
+                    "isNewBullet": false,
                     "canTargetStealth": false,
                     "canTargetFlying": false,
                     "newSprite": "Barrel_GlueGun_A1.prefab",
                     "newTile": "",
-                    "newBullet": "GlueBullet_A1.prefab",
+                    "newBullet": "",
                     "description": "",
-                    "bulletDescription": ""
+                    "bulletDescription": "",
+                    "statuses": [
+                        {
+                            "name": "glue",
+                            "attributes": {
+                                "statusStrength": "0.5",
+                                "statusTime": "0.2"
+                            }
+                        }
+                    ]
                 },
                 {
                     "upgradePath": 0,
                     "price": 60,
-                    "fireRate": -0.1,
+                    "fireRate": -0.3,
                     "rotationSpeed": 0,
                     "targetingRange": 1,
                     "isNewSprite": true,
@@ -413,7 +422,7 @@
                 {
                     "upgradePath": 0,
                     "price": 300,
-                    "fireRate": -0.05,
+                    "fireRate": 0,
                     "rotationSpeed": 0,
                     "targetingRange": 0,
                     "isNewSprite": true,
@@ -425,7 +434,13 @@
                     "newTile": "glueturret_tiles_A3",
                     "newBullet": "GlueBullet_A3.prefab",
                     "description": "",
-                    "bulletDescription": ""
+                    "bulletDescription": "",
+                    "statuses": [
+                        {
+                            "name": "poison",
+                            "attributes": {}
+                        }
+                    ]
                 }
             ],
             "upgradePath2": [
@@ -461,13 +476,23 @@
                     "newTile": "glueturret_tiles_B2.asset",
                     "newBullet": "GlueBullet_B2.prefab",
                     "description": "",
-                    "bulletDescription": ""
+                    "bulletDescription": "",
+                    "statuses": [
+                        {
+                            "name": "glue",
+                            "attributes": {
+                                "statusStrength": "-0.3",
+                                "statusTime": "-0.4",
+                                "stackable": "true"
+                            }
+                        }
+                    ]
                 },
                 {
                     "upgradePath": 1,
                     "price": 250,
-                    "fireRate": 0.8,
-                    "rotationSpeed": 90,
+                    "fireRate": 1,
+                    "rotationSpeed": 120,
                     "targetingRange": -0.2,
                     "isNewSprite": true,
                     "isNewTile": false,

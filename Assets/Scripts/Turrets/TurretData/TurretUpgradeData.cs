@@ -32,9 +32,11 @@ public class TurretUpgradeData
 
     public string bulletDescription;
 
+    public List<GameObject> statuses;
+
     
     
-    public TurretUpgradeData(int upgradePath, int price, float fireRate, float rotationSpeed, float targetingRange, bool isNewSprite, bool isNewTile, bool isNewBullet, bool canTargetStealth, bool canTargetFlying, GameObject newSprite, Tile newTile, GameObject newBullet, string description, string bulletDescription)
+    public TurretUpgradeData(int upgradePath, int price, float fireRate, float rotationSpeed, float targetingRange, bool isNewSprite, bool isNewTile, bool isNewBullet, bool canTargetStealth, bool canTargetFlying, GameObject newSprite, Tile newTile, GameObject newBullet, string description, string bulletDescription, List<GameObject> statuses)
     {
         this.upgradePath = upgradePath;
 
@@ -60,6 +62,8 @@ public class TurretUpgradeData
         this.description = description;
 
         this.bulletDescription = bulletDescription;
+
+        this.statuses = statuses;
 
 
     }
