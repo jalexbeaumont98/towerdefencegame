@@ -12,25 +12,39 @@ public class ExplosionBase : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] protected int damage;
+    [SerializeField] protected Damage damageObj;
+    [SerializeField] protected string dtype = "explosion";
+    [SerializeField] protected float critChance = 0.3f;
 
     [SerializeField] protected List<GameObject> statuses;
-    
+
     protected virtual void Start()
     {
 
+        InitializeDamage();
+    }
+
+    protected void InitializeDamage()
+    {
+        damageObj = GameState.Instance.baseDamage.Clone();
+        damageObj.damage = damage;
+        damageObj.type = dtype;
+        damageObj.critChance = critChance;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision == null) return;
 
+        else print("collision not null exp!");
+
         EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
 
         if (enemy)
         {
-            
-            enemy.TakeDamage(damage);
-            
+            print("found an enemy exp!");
+            enemy.TakeDamage(damageObj);
+
             foreach (GameObject status in statuses) enemy.AddStatus(status.GetComponent<EnemyStatus>());
             //Destroy(gameObject);
         }

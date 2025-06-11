@@ -20,14 +20,13 @@ public class UIAnchor : MonoBehaviour
     {
         this.target = target;
         this.offset = offset;
+
+        SetAnchorPosition();
     }
 
     void Update()
     {
-        if (target == null) return;
-
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + offset);
-        rectTransform.position = screenPos;
+        SetAnchorPosition();
 
         // Optionally, hide UI if behind the camera
         /*
@@ -41,5 +40,13 @@ public class UIAnchor : MonoBehaviour
             rectTransform.position = screenPos;
         }
         */
+    }
+
+    void SetAnchorPosition()
+    {
+        if (target == null) return;
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + offset);
+        rectTransform.position = screenPos;
     }
 }

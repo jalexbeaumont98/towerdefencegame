@@ -17,11 +17,14 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] protected Animator anim;
     [SerializeField] public Sprite icon;
     [SerializeField] protected List<GameObject> statuses;
+    [SerializeField] protected Damage damageObj;
 
 
     [Header("Attributes")]
     [SerializeField] protected float bulletSpeed;
     [SerializeField] protected int damage;
+    [SerializeField] protected string dtype = "basic";
+    [SerializeField] protected float critChance = 0.1f;
     [SerializeField] protected bool autoTargeting;
 
     [SerializeField] protected bool canHitFlying;
@@ -55,10 +58,21 @@ public class ProjectileBase : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         mainCamera = Camera.main;
 
+        InitializeDamage();
+
+
         spawnPosition = transform.position;
 
         if (destroyAfterAnimation) StartCoroutine(DestroyAfterAnimation());
 
+    }
+
+    protected virtual void InitializeDamage()
+    {
+        damageObj = GameState.Instance.baseDamage.Clone();
+        damageObj.damage = damage;
+        damageObj.type = dtype;
+        damageObj.critChance = critChance;
     }
 
     public virtual void SetTarget(Transform _target, Vector2 _direction)
@@ -109,15 +123,18 @@ public class ProjectileBase : MonoBehaviour
 
     public virtual void Update()
     {
-        CheckInsideBounds();
 
-        
+
+
 
     }
 
 
     protected virtual void FixedUpdate()
     {
+
+        CheckInsideBounds();
+
 
         distanceTravelled = Vector3.Distance(spawnPosition, transform.position);
 
@@ -129,7 +146,7 @@ public class ProjectileBase : MonoBehaviour
 
         if (destroyOnTower && false) //WIP
         {
-            
+
             Vector2 bulletCenter = (Vector2)transform.position;
             Vector2 bulletSize = col.size;  // Get the size of the BoxCollider2D
 
@@ -142,13 +159,13 @@ public class ProjectileBase : MonoBehaviour
             {
                 if (distanceTravelled >= destroyOnTowerDistance * GameState.Instance.tileSize)
                 {
-                    
+
 
                     DestroyProjectile();
                     return;
                 }
 
-                
+
             }
 
 
@@ -188,10 +205,10 @@ public class ProjectileBase : MonoBehaviour
             {
                 Vector3 position = transform.position;
                 Instantiate(impact_explosion, position, quaternion.identity).GetComponent<ExplosionBase>().SetStatuses(statuses);
-                
+
             }
 
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damageObj);
 
             foreach (GameObject status in statuses) enemy.AddStatus(status.GetComponent<EnemyStatus>());
 
@@ -229,7 +246,10 @@ public class ProjectileBase : MonoBehaviour
         Vector3 screenPoint = mainCamera.WorldToViewportPoint(transform.position);
         bool isVisible = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
 
-        if (!isVisible) Destroy(gameObject);
+        if (isVisible) return;
+
+        if (!GameState.Instance.levelBounds.Contains(new Vector2(transform.position.x, transform.position.y))) DestroyProjectile();
+
     }
 
     IEnumerator DestroyAfterAnimation()
@@ -240,7 +260,6 @@ public class ProjectileBase : MonoBehaviour
 
     protected virtual void DestroyProjectile()
     {
-
 
         Destroy(gameObject);
     }

@@ -37,6 +37,7 @@ public class RightMenu : MonoBehaviour
         enemyAttributeMenu.ResetMenu += () => ResetMenu();
 
         EventHandler.Instance.StartGameEvent += ToggleMenuButtonVisible;
+        
 
         //End Event Code
     }

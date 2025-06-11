@@ -49,6 +49,7 @@ public class TurretAttributeMenu : MonoBehaviour
 
 
         tileClickHandler.onTileSelected += SetTurretAttributeMenu;
+        EventHandler.Instance.OnTurretSoldEvent += TurretSold;
 
         //End Event Code
     }
@@ -128,6 +129,16 @@ public class TurretAttributeMenu : MonoBehaviour
 
         CloseMenu?.Invoke();
 
+    }
+
+    public void TurretSold(Vector3Int cellposition)
+    {
+        if (turret == null) return;
+
+        if (turret.gridPos == cellposition)
+        {
+            CloseMenu?.Invoke();
+        }
     }
 
 
