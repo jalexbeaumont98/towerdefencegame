@@ -10,12 +10,15 @@ public class GameState : MonoBehaviour
     [Header("References")]
     [SerializeField] private List<EnemyBase> enemies;
     [SerializeField] private List<TowerPlaceData> towers;
-    [SerializeField] public GameObject towerHighlightPrefab, rangeCirclePrefab, enemyStatusBarPrefab;
+    [SerializeField] public GameObject towerHighlightPrefab, rangeCirclePrefab, enemyStatusBarPrefab, damageTextPrefab;
 
     [SerializeField] public GameObject MainMenuPrefab;
     [SerializeField] public GameObject LoadingBarPrefab;
     [SerializeField] public List<GameObject> statuses;
     [SerializeField] public GameObject statusCloneParent;
+    [SerializeField] public Rect levelBounds;
+    [SerializeField] public Damage baseDamage;
+    [SerializeField] public Dictionary<string, Color> damageColorDict;
 
 
     public IReadOnlyList<TowerPlaceData> Towers => towers;
@@ -60,10 +63,22 @@ public class GameState : MonoBehaviour
     private void Start()
     {
 
+        baseDamage = new Damage { damage = 1, type = "basic", critChance = 0.1f };
+
         LoadingBarPrefab.SetActive(true);
 
         savedGameTime = 1;
 
+        damageColorDict = new Dictionary<string, Color>
+        {
+            { "basic", Color.white },
+            {"explosion", Color.yellow},
+            {"poison", Color.green}
+        };
+
+
+
+        GenerateLevelBounds();
 
     }
 
@@ -84,13 +99,13 @@ public class GameState : MonoBehaviour
             loadedTowers = true;
             EventHandler.Instance.InvokeTowersLoadedEvent();
         }
-         
+
         if (type == 1)
         {
             loadedEnemies = true;
             EventHandler.Instance.InvokeEnemiesLoadedEvent();
         }
-         
+
 
         if (loadedEnemies && loadedTowers)
         {
@@ -171,7 +186,7 @@ public class GameState : MonoBehaviour
         return true; //otherwise return true
     } //a common reason this might fail is if the path validator enemy isn't in the enemies list!!
 
-    
+
 
     public void ToggleTime()
     {
@@ -268,28 +283,55 @@ public class GameState : MonoBehaviour
     {
         GameObject statusToGet = null;
 
-        foreach(GameObject status in statuses)
+        foreach (GameObject status in statuses)
         {
             if (status.GetComponent<EnemyStatus>().type == type)
             {
                 statusToGet = status;
                 break;
             }
-               
+
         }
-         if (statusToGet == null) return null;
+        if (statusToGet == null) return null;
 
         if (attributes != null)
         {
-            statusToGet = Instantiate(statusToGet,statusCloneParent.transform);
+            statusToGet = Instantiate(statusToGet, statusCloneParent.transform);
             statusToGet.GetComponent<EnemyStatus>().ModifyStatus(attributes);
         }
 
         return statusToGet;
     }
 
-    
 
+    public Vector2 bottomLeft = new Vector2(-5, -5);
+    public Vector2 topRight = new Vector2(5, 5);
+    public Color gizmoColor = Color.green;
+
+    private void GenerateLevelBounds()
+    {
+        bottomLeft = new Vector2(-29, -16);
+        topRight = new Vector2(36, 23);
+
+        float width = topRight.x - bottomLeft.x;
+        float height = topRight.y - bottomLeft.y;
+        levelBounds = new Rect(bottomLeft.x, bottomLeft.y, width, height);
+    }
+
+    
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = gizmoColor;
+
+        Vector2 topLeft = new Vector2(bottomLeft.x, topRight.y);
+        Vector2 bottomRight = new Vector2(topRight.x, bottomLeft.y);
+
+        Gizmos.DrawLine(bottomLeft, topLeft);
+        Gizmos.DrawLine(topLeft, topRight);
+        Gizmos.DrawLine(topRight, bottomRight);
+        Gizmos.DrawLine(bottomRight, bottomLeft);
+    }
 
 
 }

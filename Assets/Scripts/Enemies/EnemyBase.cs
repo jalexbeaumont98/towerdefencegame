@@ -25,6 +25,8 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected GameObject statusBar;
     [SerializeField] protected EnemyStatusBar statusBarScript;
     [SerializeField] protected EnemyHealthBar healthBar;
+    [SerializeField] protected GameObject damageText;
+    [SerializeField] protected GameObject canvas;
 
 
 
@@ -157,7 +159,11 @@ public class EnemyBase : MonoBehaviour
 
         towerMap = FindObjectOfType<TileClickHandler>().GetTowerMap();
 
+        canvas = GameObject.FindGameObjectWithTag("MainCanvas");
+
         gameState = GameState.Instance;
+
+        damageText = GameState.Instance.damageTextPrefab;
 
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -251,9 +257,20 @@ public class EnemyBase : MonoBehaviour
     #endregion
 
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(Damage damage)
     {
-        health -= damage;
+
+        //crit chance stuff here
+
+        health -= damage.damage;
+
+        GameObject damageTextGO = Instantiate(damageText, canvas.transform);
+
+        //color determination + super effectiveness?? / weakness i guess
+
+        damageTextGO.GetComponent<DamageText>().SetText(GameState.Instance.damageColorDict[damage.type], damage.damage, transform.position);
+        
+
 
         if (selected) onEnemySelectedChange?.Invoke(health);
 
@@ -589,7 +606,7 @@ public class EnemyBase : MonoBehaviour
     private void CreateStatusBar()
     {
 
-        GameObject canvas = GameObject.FindGameObjectWithTag("MainCanvas");
+        
 
         statusBar = Instantiate(GameState.Instance.enemyStatusBarPrefab, canvas.transform);
         statusBar.SetActive(true);

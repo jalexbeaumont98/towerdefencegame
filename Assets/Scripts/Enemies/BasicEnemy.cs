@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class BasicEnemy : EnemyBase
 {
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(Damage damage)
     {
         base.TakeDamage(damage);
     }

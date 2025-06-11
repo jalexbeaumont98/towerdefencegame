@@ -22,7 +22,7 @@ public class BasicFlyingEnemy : EnemyBase
         return base.GetAgent();
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(Damage damage)
     {
         base.TakeDamage(damage);
     }

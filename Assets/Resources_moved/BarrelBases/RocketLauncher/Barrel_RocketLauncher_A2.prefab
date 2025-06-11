@@ -80,7 +80,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4188602401176916485}
   firepoint: {fileID: 6886900558483631458}
   turret: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 3303849869066263089}
   spriteTransform: {fileID: 8389628980582903500}
 --- !u!1 &9084058017850532299
 GameObject:

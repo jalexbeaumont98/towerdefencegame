@@ -33,8 +33,8 @@
             "upgradePath1": [
                 {
                     "upgradePath": 0,
-                    "price": 30,
-                    "fireRate": 2,
+                    "price": 50,
+                    "fireRate": 1,
                     "rotationSpeed": 0,
                     "targetingRange": 0,
                     "isNewSprite": false,
@@ -51,7 +51,7 @@
                 {
                     "upgradePath": 0,
                     "price": 50,
-                    "fireRate": 0,
+                    "fireRate": 1,
                     "rotationSpeed": 90,
                     "targetingRange": -0.2,
                     "isNewSprite": false,
@@ -87,7 +87,7 @@
                 {
                     "upgradePath": 1,
                     "price": 50,
-                    "fireRate": 0,
+                    "fireRate": -0.5,
                     "rotationSpeed": 0,
                     "targetingRange": 0.5,
                     "isNewSprite": true,
@@ -104,9 +104,9 @@
                 {
                     "upgradePath": 1,
                     "price": 60,
-                    "fireRate": 0,
-                    "rotationSpeed": 0,
-                    "targetingRange": 0,
+                    "fireRate": -0.5,
+                    "rotationSpeed": -15,
+                    "targetingRange": 0.5,
                     "isNewSprite": true,
                     "isNewTile": false,
                     "isNewBullet": true,
@@ -121,8 +121,8 @@
                 {
                     "upgradePath": 1,
                     "price": 120,
-                    "fireRate": 0,
-                    "rotationSpeed": 0,
+                    "fireRate": -1,
+                    "rotationSpeed": -20,
                     "targetingRange": 1,
                     "isNewSprite": true,
                     "isNewTile": true,

@@ -57,6 +57,17 @@ public class InputHandler : MonoBehaviour
     void Update()
     {
 
+
+
+
+        if (Input.GetMouseButtonDown(0)) // Left-click
+        {
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            worldPos.z = 0f; // Optional: zero out Z if you're working in 2D
+            Debug.Log("Clicked World Position: " + worldPos);
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             tileClickHandler.SetCurrentPlacement(0);
@@ -173,7 +184,7 @@ public class InputHandler : MonoBehaviour
             return; // Ignore drag if interacting with UI
         }
 
-        if (inputType == 0 || ovrride) 
+        if (inputType == 0 || ovrride)
         {
 
 

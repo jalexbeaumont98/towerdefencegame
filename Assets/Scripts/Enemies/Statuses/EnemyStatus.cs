@@ -16,6 +16,8 @@ public class EnemyStatus : MonoBehaviour
 
     public bool isActive;
 
+    public Damage damage;
+
     public Sprite sprite;
 
 
@@ -37,6 +39,7 @@ public class EnemyStatus : MonoBehaviour
 
     public virtual void RemoveStatus(EnemyBase enemy)
     {
+        isActive = false;
         UnityEngine.Debug.Log(type + " status removed");
     }
 

@@ -46,10 +46,17 @@ public class EventHandler : MonoBehaviour
 
     public event Action<int> OnInputToggledEvent;
 
+    public event Action<Vector3Int> OnTurretSoldEvent;
+
     // Trigger the event
     public void InvokeTimeToggledEvent(bool value)
     {
         OnTimeToggledEvent?.Invoke(value);
+    }
+
+    public void InvokeTurretSoldEvent(Vector3Int value)
+    {
+        OnTurretSoldEvent?.Invoke(value);
     }
 
     public void InvokeInputToggledEvent(int value)

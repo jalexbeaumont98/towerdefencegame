@@ -408,10 +408,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bar: {fileID: 469281763706881691}
   statusIconPrefab: {fileID: 4697893448458241621, guid: 4237a31be52e24f158191a74faa7dccc, type: 3}
-  statusIcons: []
-  extraStatuses: []
+  statusIconPool: []
   fullstatus: {fileID: 1597530053593237540}
+  fullIconGameObject: {fileID: 0}
+  enemy: {fileID: 0}
   maxStatuses: 3
+  statusCount: 0
 --- !u!114 &9127134394409418656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,9 +442,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTimed: 0
   statusTime: 0
+  statusStrength: 0
   type: full
   stackable: 0
-  icon: {fileID: 851256904, guid: eda4cd24611cb4b3d9b2e5ce3c56e4fe, type: 3}
+  repeats: 0
+  isActive: 0
+  sprite: {fileID: 0}
 --- !u!1 &6901020228754164723
 GameObject:
   m_ObjectHideFlags: 0

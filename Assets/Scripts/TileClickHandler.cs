@@ -475,6 +475,7 @@ public class TileClickHandler : MonoBehaviour
             gameState.SetMoney(sellPrice);
         }
 
+        EventHandler.Instance.InvokeTurretSoldEvent(cellPosition);
 
         tilemap_Walls.SetTile(cellPosition, null); //set to null at cell position
         Surface2D.UpdateNavMesh(Surface2D.navMeshData); //update nav mesh
