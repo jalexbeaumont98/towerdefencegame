@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9153317721479801949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &711717814303732288
@@ -100,12 +101,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  col: {fileID: 0}
   mainCamera: {fileID: 0}
   impact_explosion: {fileID: 4320496437361388729, guid: de7c94ce5197243b88f659d403a5c03e, type: 3}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  anim: {fileID: 0}
+  icon: {fileID: 0}
+  statuses: []
+  expIP: {fileID: 9153317721479801949}
   bulletSpeed: 5
   damage: 10
+  dtype: basic
+  critChance: 0.1
   autoTargeting: 1
   canHitFlying: 1
+  upgradeNotes: 
+  destroyAfterDistance: 1
+  maxTravelDistance: 1000
+  destroyOnTower: 0
+  destroyOnTowerDistance: 10
+  spawnPosition: {x: 0, y: 0, z: 0}
+  destroyAfterAnimation: 0
 --- !u!50 &2629333079518811260
 Rigidbody2D:
   serializedVersion: 4
@@ -178,3 +196,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.40914905, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &8495898966789237453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9153317721479801949}
+  m_Layer: 0
+  m_Name: expIP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9153317721479801949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495898966789237453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.38, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7373150060200739427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

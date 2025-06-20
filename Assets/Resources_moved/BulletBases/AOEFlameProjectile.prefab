@@ -82,8 +82,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   anim: {fileID: 0}
+  icon: {fileID: 0}
+  statuses: []
+  expIP: {fileID: 0}
   bulletSpeed: 5
   damage: 5
+  dtype: fire
+  critChance: 0.1
   autoTargeting: 0
   canHitFlying: 0
   upgradeNotes: Firepower!

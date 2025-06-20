@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -27,6 +29,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected EnemyHealthBar healthBar;
     [SerializeField] protected GameObject damageText;
     [SerializeField] protected GameObject canvas;
+    [SerializeField] protected List<string> damageTypeMultipliers;
 
 
 
@@ -45,6 +48,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected LayerMask layerMask;
     [SerializeField] protected string description;
     [SerializeField] protected Vector3 uiOffsetVector = Vector3.zero;
+    
 
 
 
@@ -151,9 +155,40 @@ public class EnemyBase : MonoBehaviour
         set { uiOffsetVector = value; }
     }
 
+    
+    protected void UpdateDamageMultiplier(string key)
+    {
+        if (damageTypeMultipliers.Contains(key)) return;
+        damageTypeMultipliers.Add(key);
+        //print("a type modifier was added or updated! " + key + " - " + value);
+    }
+
+    public float GetWeaknessMultiplier(string damageType)
+    {
+        float multiplier = 1f;
+
+        foreach (string key in damageTypeMultipliers)
+        {
+            print("checking: " + key);
+
+            if (key == damageType)
+            {
+                multiplier = 2f;
+                print("found multiplier! " + multiplier);
+                return multiplier;
+            }
+            
+
+        }
+
+        print("Didn't find a multplier");
+        return 1f; // default multiplier if not found
+    }
+
     #endregion
 
     #region Setup
+
     protected virtual void Start()
     {
 
@@ -178,6 +213,8 @@ public class EnemyBase : MonoBehaviour
 
         maxHealth = health;
 
+        
+
         if (!pathValidator)
         {
             CreateStatusBar();
@@ -191,7 +228,7 @@ public class EnemyBase : MonoBehaviour
 
     }
 
-    public void SetVariations(Dictionary<string, object> variations, List<string> statuses)
+    public void SetVariations(Dictionary<string, object> variations, List<string> statuses, Dictionary<string, float> inputModifiers)
     {
         // Modify speed if specified
         if (variations.ContainsKey("speed") && variations["speed"] is double speedValue)
@@ -252,6 +289,12 @@ public class EnemyBase : MonoBehaviour
                 Debug.LogWarning("Status is null and was not added to startStatuses.");
             }
         }
+
+        foreach (var pair in inputModifiers)
+        {
+            UpdateDamageMultiplier(pair.Key);
+        }
+
     }
 
     #endregion
@@ -262,14 +305,24 @@ public class EnemyBase : MonoBehaviour
 
         //crit chance stuff here
 
+
+        bool crit = Random.value < damage.critChance;
+
+        if (crit) damage.damage = damage.damage * 2;
+
+        float typeModifier = GetWeaknessMultiplier(damage.type);
+
+        if (typeModifier > 1) print("super effective!");
+        if (typeModifier < 1) print("not very effective");
+
+        damage.damage = Mathf.RoundToInt(damage.damage * typeModifier);
+
         health -= damage.damage;
 
         GameObject damageTextGO = Instantiate(damageText, canvas.transform);
 
-        //color determination + super effectiveness?? / weakness i guess
+        damageTextGO.GetComponent<DamageText>().SetText(GameState.Instance.damageColorDict[damage.type], damage.damage, transform.position, typeModifier, crit);
 
-        damageTextGO.GetComponent<DamageText>().SetText(GameState.Instance.damageColorDict[damage.type], damage.damage, transform.position);
-        
 
 
         if (selected) onEnemySelectedChange?.Invoke(health);
@@ -606,7 +659,7 @@ public class EnemyBase : MonoBehaviour
     private void CreateStatusBar()
     {
 
-        
+
 
         statusBar = Instantiate(GameState.Instance.enemyStatusBarPrefab, canvas.transform);
         statusBar.SetActive(true);

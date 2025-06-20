@@ -84,6 +84,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3981977441102000503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4902463337193593419}
+  m_Layer: 7
+  m_Name: expIP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4902463337193593419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3981977441102000503}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7783215218627196420}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7875180412591468990
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +148,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3794123246194489692}
+  - {fileID: 4902463337193593419}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3734550533325972265
@@ -159,13 +191,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  col: {fileID: 0}
   mainCamera: {fileID: 0}
   impact_explosion: {fileID: 6019813388380050321, guid: 335406b3c99f04b27a8a63fa435d6578, type: 3}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  anim: {fileID: 0}
+  icon: {fileID: 0}
+  statuses: []
+  expIP: {fileID: 4902463337193593419}
   bulletSpeed: 35
   damage: 4
+  dtype: basic
+  critChance: 0.1
   autoTargeting: 0
   canHitFlying: 1
   upgradeNotes: 
+  destroyAfterDistance: 1
+  maxTravelDistance: 1000
+  destroyOnTower: 0
+  destroyOnTowerDistance: 10
+  spawnPosition: {x: 0, y: 0, z: 0}
+  destroyAfterAnimation: 0
 --- !u!61 &4477728785829920989
 BoxCollider2D:
   m_ObjectHideFlags: 0
