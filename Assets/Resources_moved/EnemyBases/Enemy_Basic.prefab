@@ -253,10 +253,15 @@ MonoBehaviour:
   leftSprite: {fileID: 1334709707, guid: f8016ca1509308547ab3f5abb52b794b, type: 3}
   rightSprite: {fileID: -1732309588, guid: f8016ca1509308547ab3f5abb52b794b, type: 3}
   statuses: []
+  startStatuses: []
   statusBar: {fileID: 0}
   statusBarScript: {fileID: 0}
   healthBar: {fileID: 0}
+  damageText: {fileID: 0}
+  canvas: {fileID: 0}
+  damageTypeMultipliers: []
   enemyName: 
+  pathValidator: 0
   health: 8
   maxHealth: 0
   speed: 1
@@ -264,14 +269,11 @@ MonoBehaviour:
   shield: 0
   reward: 10
   damage: 1
-  pathMode: 0
   stealth: 0
   flying: 0
-  minimumDistance: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  minAnimTime: 0.2
   description: A basic enemy. Has no special characteristics and should be an easy
     target for your turrets.
   uiOffsetVector: {x: 0, y: 0.8, z: 0}

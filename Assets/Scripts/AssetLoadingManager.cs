@@ -112,7 +112,7 @@ public class AssetLoadingManager : MonoBehaviour
                                 else enemyPrefab = GetEnemyDuplicate(action.prototype).prefab;
 
                                 //set variations
-                                enemy.prefab = CreateModifiedClone(enemyPrefab, action.enemyType, action.variations, action.statuses);
+                                enemy.prefab = CreateModifiedClone(enemyPrefab, action.enemyType, action.variations, action.statuses, action.damageModifiers);
 
 
                                 enemyDataList.Add(enemy);
@@ -190,7 +190,7 @@ public class AssetLoadingManager : MonoBehaviour
         }
     }
 
-    public GameObject CreateModifiedClone(GameObject originalPrefab, string newName, Dictionary<string, object> variations, List<string> statuses)
+    public GameObject CreateModifiedClone(GameObject originalPrefab, string newName, Dictionary<string, object> variations, List<string> statuses, Dictionary<string, float> damageModifiers)
     {
         if (originalPrefab == null)
         {
@@ -209,7 +209,7 @@ public class AssetLoadingManager : MonoBehaviour
 
         PrintDictionaryContents(variations);
 
-        clonedObject.GetComponent<EnemyBase>().SetVariations(variations, statuses);
+        clonedObject.GetComponent<EnemyBase>().SetVariations(variations, statuses, damageModifiers);
 
         // Return the modified object
         return clonedObject;

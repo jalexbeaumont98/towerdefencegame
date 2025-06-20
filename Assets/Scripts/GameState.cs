@@ -71,9 +71,10 @@ public class GameState : MonoBehaviour
 
         damageColorDict = new Dictionary<string, Color>
         {
-            { "basic", Color.white },
-            {"explosion", Color.yellow},
-            {"poison", Color.green}
+            { "basic", Color.yellow },
+            { "explosion", new Color(1f, 0.4f, 0f) }, // orange-ish
+            {"poison", Color.green},
+            {"fire", Color.red}
         };
 
 

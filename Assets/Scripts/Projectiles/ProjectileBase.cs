@@ -18,6 +18,7 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] public Sprite icon;
     [SerializeField] protected List<GameObject> statuses;
     [SerializeField] protected Damage damageObj;
+    [SerializeField] protected Transform expIP; //explosion image point ie where to spawn it
 
 
     [Header("Attributes")]
@@ -73,6 +74,8 @@ public class ProjectileBase : MonoBehaviour
         damageObj.damage = damage;
         damageObj.type = dtype;
         damageObj.critChance = critChance;
+
+        if (damageObj.type != "basic") print("damge type is " + damageObj.type);
     }
 
     public virtual void SetTarget(Transform _target, Vector2 _direction)
@@ -203,7 +206,12 @@ public class ProjectileBase : MonoBehaviour
 
             if (impact_explosion)
             {
-                Vector3 position = transform.position;
+                Vector3 position;
+                
+                if (expIP) position = expIP.position;
+
+                else position = transform.position;
+
                 Instantiate(impact_explosion, position, quaternion.identity).GetComponent<ExplosionBase>().SetStatuses(statuses);
 
             }
