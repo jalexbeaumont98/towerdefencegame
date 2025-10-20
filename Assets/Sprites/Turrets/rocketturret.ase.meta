@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -204,13 +205,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -319740496
+    uuid:
+      value0: 1611159664
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1611159664
     name: rocketturret
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: rocketturret_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,7 +225,7 @@ ScriptedImporter:
         width: 120
         height: 35
       spriteId: cc17c16a03b2044ee8b7252fa957280f
-    - name: rocketturret_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,7 +234,7 @@ ScriptedImporter:
         width: 120
         height: 35
       spriteId: 69c94011bff954d209799d76ca7f7255
-    - name: rocketturret_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,7 +243,7 @@ ScriptedImporter:
         width: 6
         height: 6
       spriteId: 24c687a39319e4819baa94e0719e109e
-    - name: rocketturret_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -253,3 +259,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 12, y: 12}
+  previousTextureSize: {x: 128, y: 128}

@@ -11,7 +11,8 @@ public class AOEBarrel : BarrelBase
     {
         foreach (Transform fp in firepoints)
         {
-            turret.ShootFromBarrel(fp);
+            if (fp)
+                turret.ShootFromBarrel(fp);
         }
 
         
