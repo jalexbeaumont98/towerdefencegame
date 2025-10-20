@@ -6,3 +6,9 @@
 *.csproj
 *.sln
 /Temp
+*.cache
+.vsconfig
+*.vsidx
+.vs/towerdefencegame/v17/.suo
+.vs/towerdefencegame/v17/DocumentLayout.json
+/obj/Debug

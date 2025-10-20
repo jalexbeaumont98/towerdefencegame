@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -224,13 +225,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -911732673
+    uuid:
+      value0: 1176926203
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1176926203
     name: glueexpaseprite
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: glueexpaseprite_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -239,7 +245,7 @@ ScriptedImporter:
         width: 4
         height: 3
       spriteId: c666fa25429654352b67db24123fa6ce
-    - name: glueexpaseprite_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -248,7 +254,7 @@ ScriptedImporter:
         width: 6
         height: 7
       spriteId: f431c5d11e7134aa2a2283e8e4265c00
-    - name: glueexpaseprite_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -257,7 +263,7 @@ ScriptedImporter:
         width: 11
         height: 12
       spriteId: 7cdc7fe68dd05440fa0ebb051485791d
-    - name: glueexpaseprite_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -266,7 +272,7 @@ ScriptedImporter:
         width: 13
         height: 14
       spriteId: 076aaa73545284c35ac27e93289889e9
-    - name: glueexpaseprite_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -282,3 +288,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 16, y: 16}
+  previousTextureSize: {x: 64, y: 64}

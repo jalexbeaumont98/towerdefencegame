@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -424,13 +425,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1346449089
+    uuid:
+      value0: 2939256059
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1355711237
     name: flame
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: flame_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -439,7 +445,7 @@ ScriptedImporter:
         width: 3
         height: 3
       spriteId: e953cce3fa7fd4581b439ddd50b050ed
-    - name: flame_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -448,7 +454,7 @@ ScriptedImporter:
         width: 5
         height: 5
       spriteId: 224aaab287bcd45059f7e3bd82010b0e
-    - name: flame_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -457,7 +463,7 @@ ScriptedImporter:
         width: 5
         height: 7
       spriteId: 58b39a050ac77456d8121690d6e3c50b
-    - name: flame_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -466,7 +472,7 @@ ScriptedImporter:
         width: 7
         height: 9
       spriteId: d6b5e00718abd45a9acacde50eb4b70a
-    - name: flame_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -475,7 +481,7 @@ ScriptedImporter:
         width: 7
         height: 9
       spriteId: 4042e77126e574269ba6797406e999e8
-    - name: flame_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -484,7 +490,7 @@ ScriptedImporter:
         width: 9
         height: 11
       spriteId: ef4375fe308e74f06bcd56268217b6c2
-    - name: flame_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -493,7 +499,7 @@ ScriptedImporter:
         width: 9
         height: 11
       spriteId: 59a4d709d3ea64194b30f390dab4bba6
-    - name: flame_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -502,7 +508,7 @@ ScriptedImporter:
         width: 9
         height: 11
       spriteId: e7ee8c6d254b0415299dbd65c358f7f5
-    - name: flame_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -511,7 +517,7 @@ ScriptedImporter:
         width: 7
         height: 10
       spriteId: 3d501dac05a334e988d46579362e8b27
-    - name: flame_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -520,7 +526,7 @@ ScriptedImporter:
         width: 7
         height: 8
       spriteId: 0f46b43a566b34164940b7938e7a9b80
-    - name: flame_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -529,7 +535,7 @@ ScriptedImporter:
         width: 3
         height: 7
       spriteId: 916f397e8495a4042b734fdd2ae29a43
-    - name: flame_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -538,7 +544,7 @@ ScriptedImporter:
         width: 5
         height: 6
       spriteId: 3f0033c24b7e44402b87566c0cd21579
-    - name: flame_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -547,7 +553,7 @@ ScriptedImporter:
         width: 4
         height: 5
       spriteId: bba2bb4d3454b42a1bb3ad8fb522efb7
-    - name: flame_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -556,7 +562,7 @@ ScriptedImporter:
         width: 3
         height: 2
       spriteId: 6bb2a8c7a04434ca4b315601aa037533
-    - name: flame_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -572,3 +578,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 11, y: 13}
+  previousTextureSize: {x: 64, y: 64}

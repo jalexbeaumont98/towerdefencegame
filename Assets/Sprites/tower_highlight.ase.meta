@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -184,13 +185,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 932326404
+    uuid:
+      value0: 510820628
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 510820628
     name: tower_highlight
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: tower_highlight_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -199,7 +205,7 @@ ScriptedImporter:
         width: 10
         height: 10
       spriteId: 7399d9660b013fe42919c1f5c4f61ead
-    - name: tower_highlight_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -208,7 +214,7 @@ ScriptedImporter:
         width: 10
         height: 10
       spriteId: 07127a3c8d194ea41a21ce585b8ec201
-    - name: tower_highlight_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -224,3 +230,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 10, y: 10}
+  previousTextureSize: {x: 32, y: 64}

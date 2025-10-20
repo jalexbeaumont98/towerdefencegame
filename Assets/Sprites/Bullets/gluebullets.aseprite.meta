@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -184,13 +185,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 2097998596
+    uuid:
+      value0: 3240033300
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1054933996
     name: gluebullets
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: gluebullets_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -199,7 +205,7 @@ ScriptedImporter:
         width: 4
         height: 4
       spriteId: df5937208bc074cf599950ea0aebf468
-    - name: gluebullets_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -208,7 +214,7 @@ ScriptedImporter:
         width: 6
         height: 6
       spriteId: 3c0042fd3d90b4715affb1f4ab878025
-    - name: gluebullets_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -224,3 +230,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 8, y: 8}
+  previousTextureSize: {x: 32, y: 32}
