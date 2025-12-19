@@ -238,11 +238,16 @@ public class EnemyBase : MonoBehaviour
             speed = vspeed;
         }
 
+        if (variations.ContainsKey("reward"))
+        {
+            int rewardValue= Convert.ToInt32(variations["reward"]);
+            reward = rewardValue;
+        }
+
         // Modify health if specified
         if (variations.ContainsKey("health"))
         {
             int healthValue = Convert.ToInt32(variations["health"]);
-            print("is in the block");
             health = healthValue;
         }
 

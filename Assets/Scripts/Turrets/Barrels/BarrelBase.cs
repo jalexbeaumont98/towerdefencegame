@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,13 @@ public class BarrelBase : MonoBehaviour
 
     public virtual void FinalShoot()
     {
-        turret.ShootFromBarrel(firepoint);
+        try
+
+        {turret.ShootFromBarrel(firepoint); } catch (Exception e)
+        {
+            print(e);
+        }
+        
     }
 
     public virtual Sprite GetSprite()

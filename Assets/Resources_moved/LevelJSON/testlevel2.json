@@ -1,0 +1,68 @@
+{
+  "waves": [
+    {
+      "description": "Wave 1: Warm-up with basic grunts and a sturdier variant.",
+      "actions": [
+        { "type": "spawn", "enemyType": "Enemy_Basic", "prototype": "", "variations": {"health": 5}, "statuses": [], "amount": 4, "duration": 1.5 },
+        { "type": "wait", "enemyType": "", "prototype": "", "amount": 0, "duration": 5 },
+        { "type": "spawn", "enemyType": "Enemy_Basic_bigboy", "prototype": "Enemy_Basic", "variations": { "health": 40, "speed": 0.9, "reward": 30 }, "statuses": [], "damageModifiers": { "explosion": 1.2 }, "amount": 1, "duration": 1.2 }
+      ]
+    },
+    {
+      "description": "Wave 2: Introduce fast enemies mixed with basics.",
+      "actions": [
+        { "type": "spawn", "enemyType": "Enemy_Fast", "prototype": "", "variations": { "speed": 1.4 }, "statuses": [], "amount": 6, "duration": 1 },
+        { "type": "wait", "enemyType": "", "prototype": "", "amount": 0, "duration": 2 },
+        { "type": "spawn", "enemyType": "Enemy_Basic", "prototype": "", "variations": { "health": 14 }, "statuses": [], "amount": 6, "duration": 1 }
+      ]
+    },
+    {
+      "description": "Wave 3: First flyers appear—cover the skies.",
+      "actions": [
+        { "type": "spawn", "enemyType": "Enemy_Flying", "prototype": "", "variations": { "health": 6 }, "statuses": ["flying"], "amount": 3, "duration": 1 },
+        { "type": "wait", "enemyType": "", "prototype": "", "amount": 0, "duration": 3 },
+        { "type": "spawn", "enemyType": "Enemy_Basic", "prototype": "", "variations": { "health": 16 }, "statuses": [], "amount": 6, "duration": 1 }
+      ]
+    },
+    {
+      "description": "Wave 4: Stealth units slip through with a mini tank front.",
+      "actions": [
+        { "type": "spawn", "enemyType": "Enemy_Basic_stealth", "prototype": "Enemy_Basic", "variations": { "speed": 1.15, "health": 18, "color": "#6baa2f" }, "statuses": ["stealth"], "amount": 5, "duration": 1 },
+        { "type": "wait", "enemyType": "", "prototype": "", "amount": 0, "duration": 2.5 },
+        { "type": "spawn", "enemyType": "Enemy_Tank", "prototype": "Enemy_Basic", "variations": { "health": 120, "speed": 0.7, "armor": 5 }, "statuses": [], "damageModifiers": { "poison": 1.25, "explosion": 0.8 }, "amount": 1, "duration": 0.1 }
+      ]
+    },
+    {
+      "description": "Wave 5: Swarm pressure plus aerial harassment.",
+      "actions": [
+        { "type": "spawn", "enemyType": "Enemy_Swarm", "prototype": "Enemy_Fast", "variations": { "health": 2, "speed": 1.35 }, "statuses": [], "amount": 18, "duration": 1 },
+        { "type": "spawn", "enemyType": "Enemy_Flying", "prototype": "", "variations": { "health": 16, "speed": 1.2 }, "statuses": ["flying"], "amount": 6, "duration": 0.9 }
+      ]
+    },
+    {
+      "description": "Wave 6: Mixed resistances force diversified damage.",
+      "actions": [
+        { "type": "spawn", "enemyType": "Enemy_Basic_biggerboy", "prototype": "Enemy_Basic_bigboy", "variations": { "health": 80, "speed": 0.95 }, "statuses": [], "damageModifiers": { "fire": 0.7, "explosion": 1.3 }, "amount": 3, "duration": 1.1 },
+        { "type": "wait", "enemyType": "", "prototype": "", "amount": 0, "duration": 2 },
+        { "type": "spawn", "enemyType": "Enemy_Flying", "prototype": "", "variations": { "health": 20, "speed": 1.25 }, "statuses": ["flying"], "damageModifiers": { "poison": 1.2 }, "amount": 5, "duration": 1 }
+      ]
+    },
+    {
+      "description": "Wave 7: Coordinated rush—fast flankers and a big body.",
+      "actions": [
+        { "type": "spawn", "enemyType": "Enemy_Fast", "prototype": "", "variations": { "speed": 1.6, "health": 14 }, "statuses": [], "amount": 8, "duration": 0.9 },
+        { "type": "spawn", "enemyType": "Enemy_Swarm", "prototype": "Enemy_Fast", "variations": { "health": 3, "speed": 1.45 }, "statuses": [], "amount": 22, "duration": 0.9 },
+        { "type": "spawn", "enemyType": "Enemy_Tank", "prototype": "Enemy_Basic", "variations": { "health": 170, "speed": 0.65, "armor": 7 }, "statuses": [], "damageModifiers": { "poison": 1.3, "fire": 0.85 }, "amount": 1, "duration": 0.1 }
+      ]
+    },
+    {
+      "description": "Wave 8: Boss with escorts—final exam of coverage and burst.",
+      "actions": [
+        { "type": "spawn", "enemyType": "Enemy_Flying", "prototype": "", "variations": { "health": 22, "speed": 1.3 }, "statuses": ["flying"], "amount": 6, "duration": 0.9 },
+        { "type": "spawn", "enemyType": "Enemy_Basic_stealth", "prototype": "Enemy_Basic", "variations": { "health": 22, "speed": 1.2 }, "statuses": ["stealth"], "amount": 6, "duration": 0.9 },
+        { "type": "wait", "enemyType": "", "prototype": "", "amount": 0, "duration": 2.5 },
+        { "type": "spawn", "enemyType": "Enemy_Boss", "prototype": "Enemy_Basic", "variations": { "health": 600, "speed": 0.6, "armor": 10 }, "statuses": [], "damageModifiers": { "fire": 0.8, "explosion": 1.1, "poison": 1.25 }, "amount": 1, "duration": 0.1 }
+      ]
+    }
+  ]
+}
