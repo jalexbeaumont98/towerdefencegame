@@ -144,7 +144,7 @@ public class GameState : MonoBehaviour
     {
         enemies.Remove(enemy);
 
-        if (enemies.Count <= 1) NoEnemiesRemain.Invoke();
+        if (enemies.Count <= 1) NoEnemiesRemain?.Invoke();
     }
 
 

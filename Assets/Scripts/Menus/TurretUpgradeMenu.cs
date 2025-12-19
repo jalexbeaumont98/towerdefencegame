@@ -334,6 +334,7 @@ public class TurretUpgradeMenu : MonoBehaviour
             // Attempt to deduct the upgrade cost from the player's currency.
             if (gameState.AttemptPurchase(cost))
             {
+                gameState.SetMoney(-cost);
                 // Apply the upgrade to the turret and invoke any listeners for the upgrade event.
                 turret.UpgradeTurret(upgradeData);
                 onTurretUpgraded?.Invoke(turret);

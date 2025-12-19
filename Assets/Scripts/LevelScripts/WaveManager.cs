@@ -158,7 +158,10 @@ public class WaveManager : MonoBehaviour
 
     }
 
-    public int GetMode() { return mode; }
+    public int GetMode() 
+    { 
+        return mode;
+    }
 
     public int GetWaveIndex()
     {
